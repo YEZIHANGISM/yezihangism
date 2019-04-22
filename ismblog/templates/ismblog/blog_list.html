@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Blog list</h1>
+    <ul>
+        {% for blog in blog_list %}
+            <li><h3><a style="width: 90%;" href="{% url 'blog-detail' blog.id %}">{{ blog.title }}</a>   - star: {{ blog.star }}  - pageviews: {{ blog.pageviews }}</h3></li>
+            <li><p>{{ blog.summary }}</p></li>
+            <li><p style="color: gray;">create at: {{ blog.publish_date }}</p></li>
+            {% if user.is_staff %}
+                <ul style="list-style-type: none; display: flex">
+                <li><button><a href="{% url 'blog-delete' blog.id %}">delete</a></button></li>
+                <li><button><a href="{% url 'blog-update' blog.id %}">update</a></button></li>
+                </ul>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endblock %}

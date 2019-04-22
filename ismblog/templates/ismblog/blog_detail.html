@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ blog.title }}</h2>
+    <p>{{ blog.content }}</p>
+    <p><strong>created at:  </strong>{{ blog.publish_date }}</p>
+    <p><strong>author:  </strong>{{ blog.author }}</p>
+    <p><strong>tags: </strong>
+        {% for tag in blog.tags.all %}
+            {% if forloop.last %}
+                {{ tag }}
+            {% else %}
+                {{ tag }},
+            {% endif %}
+        {% endfor %}
+    </p>
+    <p><strong>Comment:</strong></p>
+    <ul>
+        {% for comment in blog.comment_set.all %}
+            <li>{{ comment.content }} - {{ comment.user_name }} - {{ comment.publish_date }}</li>
+        {% endfor %}
+
+    </ul>
+    <a href="{% url 'comment-create' blog.id %}"><input type="button" value="Comment" /></a>
+{% endblock %}
