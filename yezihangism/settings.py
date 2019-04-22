@@ -25,7 +25,7 @@ SECRET_KEY = '9ftku-b3mtainopjjqu%esr3*61^a6b3rdx7s1)6w(^=7b=e%y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['yezihangism.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'yezihangism.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ismblog',
+        'USER': 'root',
+        'PASSWORD': "5655",
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
