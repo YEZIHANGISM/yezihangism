@@ -12,17 +12,17 @@ class Tag(models.Model):
         return self.name
 
 
-class User(models.Model):
+# class User(models.Model):
 
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4,)
-    name = models.CharField(max_length=200)
-    email = models.EmailField(max_length=200)
-    password = models.CharField(max_length=12)
-    isadmin = models.BooleanField()
-    # image = models.ImageField()
+#     id = models.UUIDField(primary_key=True, default=uuid.uuid4,)
+#     name = models.CharField(max_length=200)
+#     email = models.EmailField(max_length=200)
+#     password = models.CharField(max_length=12)
+#     isadmin = models.BooleanField()
+#     # image = models.ImageField()
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
 
 class Blog(models.Model):
@@ -30,7 +30,8 @@ class Blog(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     publish_date = models.DateTimeField(auto_now=True)
-    author = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
+    # author = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
+    author = models.CharField(max_length=200, null=True)
     summary = models.TextField(max_length=1000)
     tags = models.ManyToManyField(Tag)
     # comment = models.ForeignKey('Comment', on_delete=models.SET_NULL, null=True)

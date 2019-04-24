@@ -6,7 +6,7 @@ urlpatterns = [
     path("users/", views.UserListView.as_view(), name="users"),
     path("blogs/", views.BlogListView.as_view(), name="blogs"),
 
-    path("user/<uuid:pk>", views.UserDetailView.as_view(), name="user-detail"),
+    path("user/<int:pk>", views.UserDetailView.as_view(), name="user-detail"),
     path("blog/<int:pk>", views.BlogDetailView.as_view(), name="blog-detail"),
 
     path("createblog/", views.BlogCreate.as_view(), name='blog-create'),
@@ -15,4 +15,6 @@ urlpatterns = [
 
     # path("comment/<int:pk>/create", views.CommentCreate.as_view(), name="comment-create"),
     path("comment/<int:pk>/create", views.create_comment, name="comment-create"),
+
+    path("register/", views.create_user, name="create-user"),
 ]

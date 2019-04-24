@@ -3,7 +3,7 @@
     <h1>Author list</h1>
     <ul>
         {% for user in user_list %}
-            <a href="{% url 'user-detail' user.id %}">{{ user.name }}</a>
+            <a href="{% url 'user-detail' user.id %}">{{ user.username }}</a>
             <br />
         {% endfor %}
     </ul>
