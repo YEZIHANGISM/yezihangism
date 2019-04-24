@@ -14,12 +14,15 @@
             {% endif %}
         {% endfor %}
     </p>
-    <p><strong>Comment:</strong></p>
-    <ul>
-        {% for comment in blog.comment_set.all %}
-            <li>{{ comment.content }} - {{ comment.user_name }} - {{ comment.publish_date }}</li>
-        {% endfor %}
-
-    </ul>
+    {% if blog.comment_set.all %}
+        <p><strong>Comment</strong></p>
+        <ul>
+            {% for comment in blog.comment_set.all %}
+                <li>{{ comment.content }} - {{ comment.user_name }} - {{ comment.publish_date }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>no comment yet.</p>
+    {% endif %}
     <a href="{% url 'comment-create' blog.id %}"><input type="button" value="Comment" /></a>
 {% endblock %}

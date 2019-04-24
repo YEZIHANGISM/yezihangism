@@ -37,6 +37,7 @@ class Blog(models.Model):
     star = models.IntegerField(default=0)
     pageviews = models.IntegerField(default=0)
 
+
     def __str__(self):
         return self.title
 
@@ -57,6 +58,7 @@ class Comment(models.Model):
     user_name = models.CharField(max_length=200, null=True)
     content = models.TextField(max_length=1000)
     publish_date = models.DateTimeField(auto_now=True)
+
 
     def __str__(self):
         return "comment user: %s"%self.user_name
