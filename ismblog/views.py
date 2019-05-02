@@ -51,10 +51,6 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
 class BlogDetailView(generic.DetailView):
 	model = Blog
 
-class BlogCreate(LoginRequiredMixin, CreateView):
-	model = Blog
-	fields = ['title', 'summary', 'content', 'tags']
-	success_url = reverse_lazy('blogs')
 
 class BlogDelete(LoginRequiredMixin, DeleteView):
 	model = Blog

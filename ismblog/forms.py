@@ -3,7 +3,6 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from .models import Blog, Comment
 from django.contrib.auth.models import User
-# from django.db import forms
 
 class CreateCommentModelForm(ModelForm):
 
