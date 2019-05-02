@@ -12,24 +12,29 @@
 <body>
     <nav class="head_nav">
         <ul class="head_ul">
-            <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'blogs' %}">All blog</a></li>
-            <li><a href="{% url 'users' %}">All authors</a></li>
-            {% if user.is_authenticated %}
-                <p>{{ user.get_username }}</p>
-                {% if user.is_staff %}
-                    <li><a href="{% url 'blog-create' %}">New Blog</a></li>
-                {% endif %}
+            <li><a href="{% url 'blogs' %}">ISMBlog</a></li>
+            <!-- <li><a href="{% url 'blogs' %}">All blog</a></li> -->
+            <li><a href="{% url 'users' %}">All Users</a></li>
+            <li><a href="{% url 'blog-create' %}">New Blog</a></li>
+            {% if user.is_staff %}
+                <li><a href="{% url 'index' %}">Management</a></li>
+            {% endif %}
+            <p>{{ request.session.keys }}</p>
 
-                <li><a href="{% url 'logout' %}?next={{request.path}}">Logout</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'user-detail' user.id %}">{{ user.get_username }}</a></li>
+                <li><a href="{% url 'logout' %}?next=/">Logout</a></li>
             {% else %}
                 <li><a href="{% url 'login' %}?next={% if request.path == '/accounts/login/' %}/{% else %}{{request.path}}{% endif %}">Login</a></li>
             {% endif %}
-            <li><a href="{% url 'create-user' %}">Sign up</a></li>
+            <li><a href="{% url 'register' %}">Sign up</a></li>
 
         </ul>
     </nav>
-    {% block content %}{% endblock %}
+    <div>
+      {% block content %}{% endblock %}
+    </div>
+    
     {% block pagination %}
         {% if is_paginated %}
             <div class="pagination">

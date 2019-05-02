@@ -4,7 +4,7 @@
     <h2>{{ blog.title }}</h2>
     <p>{{ blog.content }}</p>
     <p><strong>created at:  </strong>{{ blog.publish_date }}</p>
-    <p><strong>author:  </strong>{{ blog.author }}</p>
+    <p><strong>author:  </strong>{{ blog.username }}</p>
     <p><strong>tags: </strong>
         {% for tag in blog.tags.all %}
             {% if forloop.last %}

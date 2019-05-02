@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 import uuid
 
 # Create your models here.
@@ -30,13 +31,16 @@ class Blog(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     publish_date = models.DateTimeField(auto_now=True)
-    # author = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
-    author = models.CharField(max_length=200, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    username = models.CharField(max_length=200, null=True)
     summary = models.TextField(max_length=1000)
     tags = models.ManyToManyField(Tag)
     # comment = models.ForeignKey('Comment', on_delete=models.SET_NULL, null=True)
     star = models.IntegerField(default=0)
     pageviews = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ["-publish_date"]
 
 
     def __str__(self):

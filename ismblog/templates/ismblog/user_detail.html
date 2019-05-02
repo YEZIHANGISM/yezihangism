@@ -1,5 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{{ user.username }}</h1>
+	<h1>{{ user.username }}</h1>
+	<p>email: {{ user.email }}</p>
+	<p>name: {{ user.first_name }} · {{ user.last_name }}</p>
+	<p>date joined： {{ user.date_joined }}</p>
+	<p>{{ user.get_username }}</p>
+	<p>{{ user.is_authenticated }}</p>
+	{% if user.username == user.get_username %}
+		<a href="{% url 'user-update' user.id %}">edit you data</a>
+	{% endif %}
+	<hr />
+	<h3>Blogs</h3>
+	<ul>
+		{% for blog in user.blog_set.all %}
+			<a href="{% url 'blog-detail' blog.id %}"><li>{{ blog.title }} - {{ blog.star }} - {{ blog.pageviews }}</li></a>
+
+			<ul style="list-style-type: none; display: flex">
+				<li><button><a href="{% url 'blog-delete' blog.id %}">delete</a></button></li>
+				<li><button><a href="{% url 'blog-update' blog.id %}">update</a></button></li>
+			</ul>
+		{% endfor %}
+
+	</ul>
 {% endblock %}
