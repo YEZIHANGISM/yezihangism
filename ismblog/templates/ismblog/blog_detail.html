@@ -1,28 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>{{ blog.title }}</h2>
-    <p>{{ blog.content }}</p>
-    <p><strong>created at:  </strong>{{ blog.publish_date }}</p>
-    <p><strong>author:  </strong>{{ blog.username }}</p>
-    <p><strong>tags: </strong>
-        {% for tag in blog.tags.all %}
-            {% if forloop.last %}
-                {{ tag }}
-            {% else %}
-                {{ tag }},
-            {% endif %}
-        {% endfor %}
-    </p>
-    {% if blog.comment_set.all %}
-        <p><strong>Comment</strong></p>
-        <ul>
-            {% for comment in blog.comment_set.all %}
-                <li>{{ comment.content }} - {{ comment.user_name }} - {{ comment.publish_date }}</li>
+    <h1>
+        <strong>{{ blog.title }}</strong>
+        <br />
+        <small>author: {{ blog.username }}</small>
+    </h1>
+    {{ blog.summary|safe }}
+    <hr />
+    {{ blog.content|safe }}
+    <div>
+        <hr />
+        <p><strong>created at:  </strong>{{ blog.publish_date }}</p>
+
+        <p><strong>tags: </strong>
+            {% for tag in blog.tags.all %}
+                {% if forloop.last %}
+                    {{ tag }}
+                {% else %}
+                    {{ tag }},
+                {% endif %}
             {% endfor %}
-        </ul>
-    {% else %}
-        <p>no comment yet.</p>
-    {% endif %}
+        </p>
+        {% if blog.comment_set.all %}
+        <p><strong>Comment</strong></p>
+            <ul>
+                {% for comment in blog.comment_set.all %}
+                    <li>{{ comment.content|safe }} - <a href="#">{{ comment.user_name }}</a> - {{ comment.publish_date }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>no comment yet.</p>
+        {% endif %}
+    </div>
     <a href="{% url 'comment-create' blog.id %}"><input type="button" value="Comment" /></a>
 {% endblock %}

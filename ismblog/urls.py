@@ -21,4 +21,6 @@ urlpatterns = [
     # path("comment/<int:pk>/create", views.CommentCreate.as_view(), name="comment-create"),
 
     path("register/", views.create_user, name="register"),
+
+    path("search/", views.search, name="search"),
 ]

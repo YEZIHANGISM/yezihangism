@@ -1,17 +1,29 @@
 {% extends 'base.html' %}
+
 {% block content %}
-    <h1>Blog list</h1>
-    <ul>
+    <!-- <h1>Blog list</h1> -->
+    {% if empty %}
+        <div>
+            <p>{{ empty }}</p>
+        </div>
+    {% else %}
         {% for blog in blog_list %}
-            <li><h3><a style="width: 90%;" href="{% url 'blog-detail' blog.id %}">{{ blog.title }}</a>   - star: {{ blog.star }}  - pageviews: {{ blog.pageviews }}</h3></li>
-            <li><p>{{ blog.summary }}</p></li>
-            <li><p style="color: gray;">create at: {{ blog.publish_date }}</p></li>
-            {% if user.is_staff %}
-                <ul style="list-style-type: none; display: flex">
-                <li><button><a href="{% url 'blog-delete' blog.id %}">delete</a></button></li>
-                <li><button><a href="{% url 'blog-update' blog.id %}">update</a></button></li>
-                </ul>
-            {% endif %}
+            <div class="blog-list">
+                <h2><a style="width: 90%;" href="{% url 'blog-detail' blog.id %}">{{ blog.title }}</a>   - star: {{ blog.star }}  - pageviews: {{ blog.pageviews }}</h2>
+                <p>{{ blog.summary }}</p>
+                <p style="color: gray;">{{ blog.publish_date }}</p>
+                <hr />
+            </div>
         {% endfor %}
-    </ul>
+    {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+    <div class="blog_search" style="margin-top: 20px;">
+        <form class="form-inline" role="search" action="{% url 'search' %}" method="get">
+            {% csrf_token %}
+            <input type="search" class="form-control" placeholder="Search title" name="search">
+            <button type="submit" class="btn btn-default" id="search">search</button>
+        </form>
+    </div>
 {% endblock %}

@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+from ckeditor_uploader.fields import RichTextUploadingField
 import uuid
 
 # Create your models here.
@@ -29,7 +30,8 @@ class Tag(models.Model):
 class Blog(models.Model):
 
     title = models.CharField(max_length=200)
-    content = models.TextField()
+    # content = models.TextField()
+    content = RichTextUploadingField(config_name="content_config")
     publish_date = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     username = models.CharField(max_length=200, null=True)
@@ -61,7 +63,8 @@ class Comment(models.Model):
     # user_name = models.ForeignKey("User", on_delete=models.SET_NULL, null=True)
     # blog_title = models.CharField(max_length=200)
     user_name = models.CharField(max_length=200, null=True)
-    content = models.TextField(max_length=1000)
+    # content = models.TextField(max_length=1000)
+    content = RichTextUploadingField(max_length=1000, config_name="content_config") # 可以考虑给评论新增配置
     publish_date = models.DateTimeField(auto_now=True)
 
 

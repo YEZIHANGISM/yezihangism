@@ -7,50 +7,69 @@
     {% endblock %}
 
     {% load static %}
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'js/ckeditor/default.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script src="{% static 'js/ckeditor/highlight.pack.js' %}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
 </head>
 <body>
-    <nav class="head_nav">
-        <ul class="head_ul">
-            <li><a href="{% url 'blogs' %}">ISMBlog</a></li>
-            <!-- <li><a href="{% url 'blogs' %}">All blog</a></li> -->
-            <li><a href="{% url 'users' %}">All Users</a></li>
-            <li><a href="{% url 'blog-create' %}">New Blog</a></li>
-            {% if user.is_staff %}
-                <li><a href="{% url 'index' %}">Management</a></li>
-            {% endif %}
-            <p>{{ request.session.keys }}</p>
-
-            {% if user.is_authenticated %}
-                <li><a href="{% url 'user-detail' user.id %}">{{ user.get_username }}</a></li>
-                <li><a href="{% url 'logout' %}?next=/">Logout</a></li>
-            {% else %}
-                <li><a href="{% url 'login' %}?next={% if request.path == '/accounts/login/' %}/{% else %}{{request.path}}{% endif %}">Login</a></li>
-            {% endif %}
-            <li><a href="{% url 'register' %}">Sign up</a></li>
-
-        </ul>
-    </nav>
-    <div>
-      {% block content %}{% endblock %}
+    <div class="ismblog-navbar" role="navigation">
+        <div class="container">
+            <nav>
+                <ul class="ismblog-ul-left">
+                    <li><a href="{% url 'blogs' %}">ISMBlog</a></li>
+                    <li><a href="{% url 'blog-create' %}">New Blog</a></li>
+                    {% if user.is_staff %}
+                        <li><a href="{% url 'index' %}">Management</a></li>
+                    {% endif %}
+                </ul>
+                <ul class="ismblog-ul-right">
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'user-detail' user.id %}">{{ user.get_username }}</a></li>
+                        <li><a href="{% url 'logout' %}?next=/">Logout</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}?next={% if request.path == '/accounts/login/' %}/{% else %}{{request.path}}{% endif %}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
     </div>
     
-    {% block pagination %}
-        {% if is_paginated %}
-            <div class="pagination">
-                <span class="page-links">
-                  {% if page_obj.has_previous %}
-                      <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
-                  {% endif %}
-                  <span class="page-current">
-                      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                  </span>
-                  {% if page_obj.has_next %}
-                      <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
-                  {% endif %}
-                </span>
+    <div class="container">
+      <div class="row">
+          <div class="col-md-8">
+              {% block content %}{% endblock %}
+          </div>
+          <div class="col-md-4">
+            <div class="sidebar-nav">
+              {% block sidebar %}{% endblock %}
             </div>
-        {% endif %}
-    {% endblock %}
+          </div>
+      </div>
+    </div>
+    
+    <div class="container">
+        {% block pagination %}
+            {% if is_paginated %}
+                <div class="pagination">
+                    <span class="page-links">
+                      {% if page_obj.has_previous %}
+                          <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                      {% endif %}
+                      <span class="page-current">
+                          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                      </span>
+                      {% if page_obj.has_next %}
+                          <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                      {% endif %}
+                    </span>
+                </div>
+            {% endif %}
+        {% endblock %}
+    </div>
 </body>
 </html>

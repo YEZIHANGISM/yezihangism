@@ -8,6 +8,8 @@ from django.urls import reverse_lazy, reverse
 from .forms import CreateCommentModelForm, CreateUserForm, CreateBlogModelForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def index(request):
@@ -142,3 +144,21 @@ def create_user(request):
 			"form":user
 		}
 	)
+
+def search(request):
+    empty = ""
+    # search是input中的name
+    name = request.GET.get('search')
+    if name == "":
+        empty = "search word is required"
+
+    blog = Blog.objects.filter(title__icontains=name)
+
+    return render(
+        request,
+        "ismblog/blog_list.html",
+        context={
+            "blog_list":blog,
+            "empty": empty,
+        }
+    )
