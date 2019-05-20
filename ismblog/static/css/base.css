@@ -5,8 +5,8 @@ body {
 }
 
 .ismblog-navbar {
-    position: fixed;
-    top: 0;
+    /*position: fixed;*/
+    /*top: 0;*/
     width: 100%;
     background-color: #f6f6f6;
     font-size: 16px;
@@ -45,4 +45,8 @@ a {
 
 a:hover {
     text-decoration: none;
+}
+
+.ismblog-header {
+    background-color: lightgray;
 }
