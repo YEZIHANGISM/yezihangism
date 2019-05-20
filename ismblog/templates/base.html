@@ -8,6 +8,7 @@
 
     {% load static %}
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href='http://fonts.font.im/css?family=Lato|Shadows+Into+Light' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{% static 'js/ckeditor/default.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <script src="{% static 'js/ckeditor/highlight.pack.js' %}"></script>
@@ -15,11 +16,33 @@
     <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
+    <script>
+        $(function () {
+            $(window).scroll(function (event) {
+                var $height = $(document).scrollTop();
+                if ($height > 150) {
+                    $(".ismblog-navbar").css({
+                        position: "fixed",
+                        top: 0,
+                    });
+                    $(".header-hole").show();
+                }
+                else {
+                    $(".ismblog-navbar").css({
+                        position: "static",
+                    });
+                    $(".header-hole").hide();
+                }
+            })
+        })
+    </script>
+
 </head>
 <body>
     <div class="ismblog-header">
-        <p>YEZIHANGISM</p>
+        <span>YEZIHANGISM</span>
     </div>
+    <div class="header-hole" style="display: none; height: 70px;" ></div>
 
     <div class="ismblog-navbar" role="navigation">
         <div class="container">
@@ -74,6 +97,10 @@
                 </div>
             {% endif %}
         {% endblock %}
+    </div>
+    <div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
 </body>
 </html>

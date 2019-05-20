@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    padding-top: 90px;
+    /*padding-top: 90px;*/
     font-family: 'Lato', sans-serif;
 }
 
@@ -49,4 +49,13 @@ a:hover {
 
 .ismblog-header {
     background-color: lightgray;
+    height: 150px;
+    text-align: center;
+}
+
+.ismblog-header span {
+    font-size: 95px;
+    color: #1a8d3d;
+	font-family: 'Shadows Into Light', cursive;
+    font-weight: bold;
 }
