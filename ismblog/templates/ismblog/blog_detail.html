@@ -29,8 +29,16 @@
     </div>
     <a href="{% url 'comment-create' blog.id %}"><input type="button" value="Comment" /></a>
     <hr />
-    <div>
-        {{ test }}
-
+    <div style="font-weight: bold">
+        {% if previous %}
+            <a href="{% url 'blog-detail' previous.id %}">< {{ previous }}</a>
+        {% else %}
+            <span>< no earlier</span>
+        {% endif %}
+        {% if next %}
+            <a href="{% url 'blog-detail' next.id %}" style="float: right;">{{ next }} ></a>
+        {% else %}
+            <span style="float: right;">no more ></span>
+        {% endif %}
     </div>
 {% endblock %}

@@ -43,7 +43,7 @@ class Blog(models.Model):
 
     class Meta:
         ordering = ["-publish_date"]
-
+        # order_with_respect_to = "publish_date"
 
     def __str__(self):
         return self.title
@@ -67,6 +67,8 @@ class Comment(models.Model):
     content = RichTextUploadingField(max_length=1000, config_name="content_config") # 可以考虑给评论新增配置
     publish_date = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ["-publish_date"]
 
     def __str__(self):
         return "comment user: %s"%self.user_name

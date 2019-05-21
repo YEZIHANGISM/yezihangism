@@ -29,6 +29,7 @@ def index(request):
 			}
 	)
 
+
 class BlogListView(generic.ListView):
 	model = Blog
 	paginate_by = 3
@@ -41,9 +42,11 @@ class UserListView(generic.ListView):
 	def get_queryset(self):
 		return User.objects.filter(is_superuser=0)
 
+
 class UserDetailView(generic.DetailView):
 	model = User
 	template_name = "ismblog/user_detail.html"
+
 
 class UserUpdate(LoginRequiredMixin, UpdateView):
 	model = User
@@ -56,12 +59,22 @@ class BlogDetailView(generic.DetailView):
 
 	def get_context_data(self, **kwargs):
 		context = super(BlogDetailView, self).get_context_data(**kwargs)
-		print(context)
-		print(context["blog"].id)
-		print(context["object"])
-		print(type(context["blog"]))
-		context["test"] = "test"
+		self.current_id = context["blog"].id
+		self.first_id = Blog.objects.all().order_by("id").first().id
+		self.last_id = Blog.objects.all().order_by("id").last().id
+		if self.has_previous():
+			context["previous"] = Blog.objects.filter(id__lt=self.current_id).order_by("id").last()
+		if self.has_next():
+			context["next"] = Blog.objects.filter(id__gt=self.current_id).order_by("id").first()
+
 		return context
+
+	def has_next(self):
+		return self.current_id < self.last_id
+
+	def has_previous(self):
+		return self.current_id > self.first_id
+
 
 class BlogDelete(LoginRequiredMixin, DeleteView):
 	model = Blog
