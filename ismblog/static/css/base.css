@@ -4,9 +4,13 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
+p {
+    margin: 0;
+    line-height: 2em;
+}
+
 .ismblog-navbar {
-    /*position: fixed;*/
-    /*top: 0;*/
+    margin-bottom: 30px;
     width: 100%;
     background-color: #f6f6f6;
     font-size: 16px;

@@ -123,12 +123,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/'
 
 CKEDITOR_IMAGE_BACKEND = 'pillow'
 CKEDITOR_UPLOAD_PATH = 'images'
@@ -136,7 +135,6 @@ CKEDITOR_UPLOAD_PATH = 'images'
 LOGIN_REDIRECT_URL = '/'
 
 LOGIN_URL = '/accounts/login/'
-
 CKEDITOR_CONFIGS = {
     'content_config': {
         'skin': 'moono-lisa',
@@ -147,6 +145,8 @@ CKEDITOR_CONFIGS = {
             ['Styles', 'Format', 'Bold', 'Italic', 'Underline', 'Strike', 'SpellChecker', 'Undo', 'Redo'],
             ['Link', 'Unlink', 'Anchor'],
             ['Image', 'Flash', 'Table', 'HorizontalRule'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
+            'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
             ['TextColor', 'BGColor'],
             ['Smiley', 'SpecialChar'],
             ['CodeSnippet'], ['Source'],
@@ -161,3 +161,4 @@ CKEDITOR_CONFIGS = {
         'extraPlugins': 'codesnippet',
     }
 }
+

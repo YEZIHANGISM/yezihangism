@@ -14,13 +14,7 @@
         <p><strong>created at:  </strong>{{ blog.publish_date }}</p>
 
         <p><strong>tags: </strong>
-            {% for tag in blog.tags.all %}
-                {% if forloop.last %}
-                    {{ tag }}
-                {% else %}
-                    {{ tag }},
-                {% endif %}
-            {% endfor %}
+            {{ blog.display_tag }}
         </p>
         {% if blog.comment_set.all %}
         <p><strong>Comment</strong></p>
@@ -34,4 +28,9 @@
         {% endif %}
     </div>
     <a href="{% url 'comment-create' blog.id %}"><input type="button" value="Comment" /></a>
+    <hr />
+    <div>
+        {{ test }}
+
+    </div>
 {% endblock %}

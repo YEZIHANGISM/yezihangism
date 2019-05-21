@@ -33,6 +33,7 @@ class BlogListView(generic.ListView):
 	model = Blog
 	paginate_by = 3
 
+
 class UserListView(generic.ListView):
 	model = User
 	template_name = "ismblog/user_list.html"
@@ -53,6 +54,14 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
 class BlogDetailView(generic.DetailView):
 	model = Blog
 
+	def get_context_data(self, **kwargs):
+		context = super(BlogDetailView, self).get_context_data(**kwargs)
+		print(context)
+		print(context["blog"].id)
+		print(context["object"])
+		print(type(context["blog"]))
+		context["test"] = "test"
+		return context
 
 class BlogDelete(LoginRequiredMixin, DeleteView):
 	model = Blog
@@ -146,19 +155,19 @@ def create_user(request):
 	)
 
 def search(request):
-    empty = ""
-    # search是input中的name
-    name = request.GET.get('search')
-    if name == "":
-        empty = "search word is required"
+	empty = ""
+	# search是input中的name
+	name = request.GET.get('search')
+	if name == "":
+		empty = "search word is required"
 
-    blog = Blog.objects.filter(title__icontains=name)
+	blog = Blog.objects.filter(title__icontains=name)
 
-    return render(
-        request,
-        "ismblog/blog_list.html",
-        context={
-            "blog_list":blog,
-            "empty": empty,
-        }
-    )
+	return render(
+		request,
+		"ismblog/blog_list.html",
+		context={
+			"blog_list":blog,
+			"empty": empty,
+		}
+	)

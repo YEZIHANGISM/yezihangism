@@ -26,3 +26,16 @@ is_authenticated并不意味着任何权限，也不会检查用户是否处于�
   1. 如果你需要改变的只是行为，并且不需要改变数据库存储的内容，那么你可以建立一个基于User模型的代理模型。它允许代理模型提供很多功能，包括默认排序，自定    义的管理器和自定义的模型方法等。
      如果你想存储与User模型关联的信息，可以使用OneToOneField到包含其他信息字段的模型。这种one-to-one模型经常被称作Profile模型，因为它可能存储站点用    户的非身份验证的相关信息。
   2. 设置一个自定义的用户模型，继承自AbstractUser
+  
+重写save_models方法能够在后台实现某些功能，例如在保存博客信息时自动添加作者。
+  
+Django的静态文件配置：
+  1. 设置STATIC_URL
+  2. 在模板中引用。
+    
+    {% load static %}
+    {% static 'path/to/static.jpg' %}
+    
+  2. 将静态文件保存至static目录中。注意：在开发环境下。如果你使用 django.contrib.staticfiles。那么当你在DEBUG为True时运行runserver，django将自动为你保存静态文件。
+  这种方法不可以使用到生产环境中。
+  
