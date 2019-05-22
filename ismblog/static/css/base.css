@@ -63,3 +63,10 @@ a:hover {
 	font-family: 'Shadows Into Light', cursive;
     font-weight: bold;
 }
+
+p img {
+    width: auto;
+    height: auto;
+    display: block;
+    max-width: 100%;
+}
