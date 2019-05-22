@@ -73,7 +73,7 @@ class BlogDetailView(generic.DetailView):
 		return self.current_id < self.last_id
 
 	def has_previous(self):
-		return self.current_id > self.first_id
+		return self.current_id > 1
 
 
 class BlogDelete(LoginRequiredMixin, DeleteView):
