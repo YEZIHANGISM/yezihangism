@@ -56,7 +56,7 @@ get_previous_in_order(): 获取当前对象的上一个对象
     obj = Model.objects.get(id=3)
     obj.get_next_in_order()  # 4
 
-
+box-shadow属性：如果设置padding，那么阴影将出现在padding边缘，如果设置margin，阴影位置不变
   
 Django的静态文件配置：
   1. 设置STATIC_URL

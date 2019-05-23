@@ -8,6 +8,7 @@
 
     {% load static %}
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
     <link href='http://fonts.font.im/css?family=Lato|Shadows+Into+Light' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{% static 'js/ckeditor/default.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
@@ -42,7 +43,7 @@
     <div class="ismblog-header">
         <span>YEZIHANGISM</span>
     </div>
-    <div class="header-hole" style="display: none; height: 100px;" ></div>
+    <div class="header-hole" style="display: none; height: 80px;" ></div>
 
     <div class="ismblog-navbar" role="navigation">
         <div class="container">
@@ -65,26 +66,44 @@
             </nav>
         </div>
     </div>
-    
-    <div class="container">
-      <div class="row">
-          <div class="col-md-8">
-              {% block content %}{% endblock %}
+
+    <div class="ismblog-content">
+        <div class="container">
+          <div class="row">
+              <div class="col-md-8">
+                  {% block content %}{% endblock %}
+                  {% block pagination %}{% endblock %}
+              </div>
+              <div class="col-md-4">
+                <div class="sidebar-nav">
+                  {% block sidebar %}{% endblock %}
+                </div>
+              </div>
           </div>
-          <div class="col-md-4">
-            <div class="sidebar-nav">
-              {% block sidebar %}{% endblock %}
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h2>Contact</h2>
+                    <ul>
+                        <li><i class="icon-github icon-large"></i>  Github: <a href="https://github.com/YEZIHANGISM">YEZIHANGISM</a></li>
+                        <li><i class="icon-envelope-alt icon-large "></i>  Eamil: <a href="">yezihangism@gamil.com</a></li>
+                        <li><i class="icon-twitter icon-large"></i>  Twitter: <a href="">@yezihang_ism</a></li>
+                        <li><i class="icon-comments-alt icon-large"></i>  Wechat: <a href="">@IAMYEZIHANG</a></li>
+                        <li><i class="icon-comment-alt icon-large"></i>  QQ: <a href="">954013871@YEZIHANGSISM</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-8">
+                    <h2>友情链接</h2>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda atque consequatur dicta, dolore eos est eum ipsam ipsum maiores mollitia nostrum pariatur placeat porro quaerat quas quasi, tenetur veritatis.
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquid culpa cupiditate dolore enim, iure modi, nemo nisi numquam placeat porro possimus recusandae repellat sequi soluta ullam ut voluptate, voluptatum.</p>
+                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium, atque eos eveniet id impedit, inventore iusto laudantium, molestiae odit quod recusandae repellendus sit tempore voluptas. Assumenda facilis omnis quos.</span>
+                </div>
             </div>
-          </div>
-      </div>
-    </div>
-    
-
-    {% block pagination %}{% endblock %}
-
-    <div>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    </div>
+        </div>
+    </footer>
 </body>
 </html>

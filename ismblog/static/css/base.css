@@ -2,6 +2,12 @@ body {
     margin: 0;
     /*padding-top: 90px;*/
     font-family: 'Lato', sans-serif;
+    color: #3c3c3c;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    margin: 10px 0;
+    padding: 0;
 }
 
 p {
@@ -10,7 +16,7 @@ p {
 }
 
 .ismblog-navbar {
-    margin-bottom: 30px;
+    /*margin-bottom: 30px;*/
     width: 100%;
     background-color: #f6f6f6;
     font-size: 16px;
@@ -44,11 +50,17 @@ p {
 }
 
 a {
-    color: #1a8d3d;
+    /*color: #1a8d3d;*/
+    color: inherit;
 }
 
 a:hover {
-    text-decoration: none;
+    /*color: #292929;*/
+}
+
+.ismblog-content {
+    /*padding-bottom: 40px;*/
+    margin: 40px 0;
 }
 
 .ismblog-header {
@@ -64,9 +76,38 @@ a:hover {
     font-weight: bold;
 }
 
+.pagination {
+    margin: 0;
+}
+
 p img {
     width: auto;
     height: auto;
     display: block;
     max-width: 100%;
+}
+
+footer {
+    background-color: lightgrey;
+    box-shadow: 0 9px 7px -7px gray inset;
+    padding: 50px 0;
+}
+
+footer ul {
+    list-style-type: none;
+    color: black;
+    padding: 0;
+}
+
+footer li {
+    text-decoration: none;
+    margin: 5px 0;
+}
+
+footer a {
+    color: inherit;
+}
+
+footer a:hover {
+    color: #474747;
 }
