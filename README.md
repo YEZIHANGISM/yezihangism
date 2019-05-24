@@ -67,4 +67,12 @@ Django的静态文件配置：
     
   2. 将静态文件保存至static目录中。注意：在开发环境下。如果你使用 django.contrib.staticfiles。那么当你在DEBUG为True时运行runserver，django将自动为你保存静态文件。
   这种方法不可以使用到生产环境中。
+  3. 在生产环境中，运行collectstatic 将所需的所有静态文件复制到根据你的STATIC_ROOT得到的相对路径中去。
+    
+    $ python manage.py collectstatic
+    
+django-ckeditor
+  1. https://github.com/django-ckeditor/django-ckeditor
+  
+  
   

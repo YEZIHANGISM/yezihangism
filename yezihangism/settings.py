@@ -131,10 +131,12 @@ STATIC_URL = '/static/'
 
 CKEDITOR_IMAGE_BACKEND = 'pillow'
 CKEDITOR_UPLOAD_PATH = 'images'
+CKEDITOR_JQUERY_URL = 'js/jquery-1.12.4.min.js'
 
 LOGIN_REDIRECT_URL = '/'
 
 LOGIN_URL = '/accounts/login/'
+
 CKEDITOR_CONFIGS = {
     'content_config': {
         'skin': 'moono-lisa',
