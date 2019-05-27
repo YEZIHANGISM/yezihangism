@@ -55,7 +55,7 @@ a {
 }
 
 a:hover {
-    /*color: #292929;*/
+    color: #137a4b;
 }
 
 .ismblog-content {
@@ -64,14 +64,14 @@ a:hover {
 }
 
 .ismblog-header {
-    background-color: lightgray;
+    /*background-color: lightgray;*/
     height: 150px;
     text-align: center;
 }
 
 .ismblog-header span {
     font-size: 95px;
-    color: #1a8d3d;
+    color: #137a4b;
 	font-family: 'Shadows Into Light', cursive;
     font-weight: bold;
 }
@@ -88,14 +88,14 @@ p img {
 }
 
 footer {
-    background-color: lightgrey;
-    box-shadow: 0 9px 7px -7px gray inset;
+    background-color: #137a4b;
+    /*box-shadow: 0 9px 7px -7px gray inset;*/
+    color: whitesmoke;
     padding: 50px 0;
 }
 
 footer ul {
     list-style-type: none;
-    color: black;
     padding: 0;
 }
 
@@ -109,5 +109,5 @@ footer a {
 }
 
 footer a:hover {
-    color: #474747;
+    color: whitesmoke;
 }

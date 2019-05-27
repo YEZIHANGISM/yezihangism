@@ -59,15 +59,15 @@ get_previous_in_order(): 获取当前对象的上一个对象
 box-shadow属性：如果设置padding，那么阴影将出现在padding边缘，如果设置margin，阴影位置不变
   
 Django的静态文件配置：
-  1. 设置STATIC_URL
+  1. 设置STATIC_URL,STATIC_ROOT,MEDIA_URL,MEDIA_ROOT
   2. 在模板中引用。
     
     {% load static %}
     {% static 'path/to/static.jpg' %}
     
-  2. 将静态文件保存至static目录中。注意：在开发环境下。如果你使用 django.contrib.staticfiles。那么当你在DEBUG为True时运行runserver，django将自动为你保存静态文件。
+  3. 将静态文件保存至static目录中。注意：在开发环境下。如果你使用 django.contrib.staticfiles。那么当你在DEBUG为True时运行runserver，django将自动为你保存静态文件。
   这种方法不可以使用到生产环境中。
-  3. 在生产环境中，运行collectstatic 将所需的所有静态文件复制到根据你的STATIC_ROOT得到的相对路径中去。
+  4. 在生产环境中，运行collectstatic 将所需的所有静态文件复制到根据你的STATIC_ROOT得到的相对路径中去。
     
     $ python manage.py collectstatic
     
