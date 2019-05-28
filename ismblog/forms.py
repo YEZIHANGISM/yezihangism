@@ -39,4 +39,4 @@ class CreateBlogModelForm(ModelForm):
 
     class Meta:
         model = Blog
-        fields = ['title', 'summary', 'content', 'tags']
+        fields = ['title', 'summary', 'content', 'tags', 'topic']

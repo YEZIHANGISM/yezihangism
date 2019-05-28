@@ -13,6 +13,14 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+class Topic(models.Model):
+
+    title = models.CharField(max_length=200,
+                             help_text='choose topic for blogs')
+
+    def __str__(self):
+        return self.title
+
 
 # class User(models.Model):
 
@@ -37,6 +45,7 @@ class Blog(models.Model):
     username = models.CharField(max_length=200, null=True)
     summary = models.TextField(max_length=1000)
     tags = models.ManyToManyField(Tag)
+    topic = models.ForeignKey("Topic", on_delete=models.SET_NULL, null=True)
     # comment = models.ForeignKey('Comment', on_delete=models.SET_NULL, null=True)
     star = models.IntegerField(default=0)
     pageviews = models.IntegerField(default=0)
