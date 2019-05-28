@@ -34,6 +34,10 @@ class BlogListView(generic.ListView):
 	model = Blog
 	paginate_by = 3
 
+	def get_context_data(self, **kwargs):
+		context = super(BlogListView, self).get_context_data(**kwargs)
+		context["tags"] = Tag.objects.all()
+		return context
 
 class UserListView(generic.ListView):
 	model = User
@@ -182,5 +186,22 @@ def search(request):
 		context={
 			"blog_list":blog,
 			"empty": empty,
+		}
+	)
+
+def filter_by_tag(request, pk):
+	Tags = get_object_or_404(Tag, pk=pk)
+	print(Tags)
+	print(type(Tags))
+	print("-----------------")
+	print(Tags.name)
+	print(type(Tags.name))
+	blog = Blog.objects.filter(tags__icontains=Tags.name)
+
+	return render(
+		request,
+		"ismblog/blog_list.html",
+		context={
+			"blog_list":blog
 		}
 	)

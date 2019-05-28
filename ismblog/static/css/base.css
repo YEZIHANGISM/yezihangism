@@ -8,6 +8,8 @@ body {
 h1,h2,h3,h4,h5,h6 {
     margin: 10px 0;
     padding: 0;
+    font-family: 'Bitter', serif;
+    font-weight: bold;
 }
 
 p {
@@ -64,14 +66,15 @@ a:hover {
 }
 
 .ismblog-header {
-    /*background-color: lightgray;*/
+    background-color: #148755;
     height: 150px;
     text-align: center;
 }
 
 .ismblog-header span {
     font-size: 95px;
-    color: #137a4b;
+    /*color: #137a4b;*/
+    color: whitesmoke;
 	font-family: 'Shadows Into Light', cursive;
     font-weight: bold;
 }
@@ -88,7 +91,7 @@ p img {
 }
 
 footer {
-    background-color: #137a4b;
+    background-color: #148755;
     /*box-shadow: 0 9px 7px -7px gray inset;*/
     color: whitesmoke;
     padding: 50px 0;

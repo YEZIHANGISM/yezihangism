@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}
+    <title>blog list</title>
+{% endblock %}
+
 {% block content %}
     <!-- <h1>Blog list</h1> -->
     {% if empty %}
@@ -26,6 +30,12 @@
             <input type="search" class="form-control" placeholder="Search title" name="search">
             <button type="submit" class="btn btn-default" id="search">search</button>
         </form>
+    </div>
+    <hr />
+    <a class="blog-tags">
+        {% for tag in tags %}
+            <a href="{% url 'filter' tag.id %}"><button type="submit" class="label" style="border-radius: 290486px; font-weight: normal; background-color: #148755;">{{ tag }}</button></a>
+        {% endfor %}
     </div>
 {% endblock %}
 

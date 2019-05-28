@@ -19,4 +19,5 @@ urlpatterns = [
     # path("register/", views.create_user, name="register"),
 
     path("search/", views.search, name="search"),
+    path("filter/<int:pk>", views.filter_by_tag, name="filter"),
 ]
