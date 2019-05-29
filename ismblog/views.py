@@ -107,7 +107,7 @@ def create_blog(request):
 		if form.is_valid():
 			form = form.save(commit=False)
 			form.user = request.user
-			form.username = request.user.username
+			# form.username = request.user.username
 			form.save()
 
 			return HttpResponseRedirect(reverse('blogs'))

@@ -59,9 +59,6 @@ class Blog(models.Model):
     def display_tag(self):
         return ", ".join([tag.name for tag in self.tags.all()])
 
-    def display_topic(self):
-        return ", ".join([item.title for item in self.topic.all()])
-
     def get_absolute_url(self):
         return reverse('blog-detail', args=[str(self.id)])
 
