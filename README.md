@@ -82,4 +82,4 @@ django-ckeditor
 如果要做分页，那么不能和主页的分页展示共用一个模板，两者的路径是不同的。
 函数视图中使用分页可参考  https://github.com/django/django/blob/master/django/views/generic/list.py
   
-  
+对于导航栏上的专题分类，可以考虑将其列为一个单独的模型，这样做的好处是，分页时的跳转不会按照全部博客的id跳转
