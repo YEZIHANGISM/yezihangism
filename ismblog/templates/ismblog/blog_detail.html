@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
+{% block title %}
+    <title>blog</title>
+{% endblock %}
+
+
 <script>
-    $(function () {
-        $("p img")
-    })
+
 </script>
 
 
@@ -11,13 +14,19 @@
     <h1>
         <strong>{{ blog.title }}</strong>
         <br />
-        <small>author: {{ blog.username }}</small>
+        <small>author: {{ blog.user.username }}</small>
     </h1>
     {{ blog.summary|safe }}
     <hr />
     {{ blog.content|safe }}
     <div>
         <hr />
+        {% if user.is_staff %}
+            <div>
+                <a href="{% url 'blog-update' blog.id %}"><button class="btn btn-success" id="btn-color-inherit">Update</button></a>
+                <a href="{% url 'blog-delete' blog.id %}"><button class="btn btn-danger">Delete</button></a>
+            </div>
+        {% endif %}
         <p><strong>created at:  </strong>{{ blog.publish_date }}</p>
 
         <p><strong>tags: </strong>

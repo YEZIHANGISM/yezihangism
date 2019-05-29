@@ -4,12 +4,13 @@ from django.views import generic
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.contrib.auth.decorators import permission_required, login_required
 from django.views.generic.edit import DeleteView, CreateView, UpdateView
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy as _, reverse
 from .forms import CreateCommentModelForm, CreateUserForm, CreateBlogModelForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, InvalidPage
+from django.http import Http404
 
 # Create your views here.
 def index(request):
@@ -82,7 +83,7 @@ class BlogDetailView(generic.DetailView):
 
 class BlogDelete(LoginRequiredMixin, DeleteView):
 	model = Blog
-	success_url = reverse_lazy('blogs')
+	success_url = _('blogs')
 
 class BlogUpdate(LoginRequiredMixin, UpdateView):
 	model = Blog
@@ -92,8 +93,8 @@ class BlogUpdate(LoginRequiredMixin, UpdateView):
 # class CommentCreate(LoginRequiredMixin, CreateView):
 #     model = Comment
 #'
-#     # success_url = reverse_lazy('blog-detail', args=str(blog.id))
-#     success_url = reverse_lazy('users')
+#     # success_url = _('blog-detail', args=str(blog.id))
+#     success_url = _('users')
 #     fields = ['content']
 
 @login_required()
@@ -180,14 +181,21 @@ def search(request):
 
 	blog = Blog.objects.filter(title__icontains=name)
 
+	# 函数视图中的分页可参考如下，其中传递给模板的"blog_list"应该取分页后得到的数据page.object_list
+	# paginator = Paginator(blog, 3)
+	# page_kwarg = "page"
+	# page = request.GET.get(page_kwarg,1)
+	# page = paginator.get_page(page)
+
 	return render(
 		request,
 		"ismblog/blog_list.html",
 		context={
-			"blog_list":blog,
-			"empty": empty,
+			"blog_list": blog,
+			"empty": empty
 		}
 	)
+
 
 def filter_by_tag(request, pk):
 	Tags = get_object_or_404(Tag, pk=pk)
@@ -203,7 +211,6 @@ def filter_by_tag(request, pk):
 
 def topic_list(request, pk):
 	topic = get_object_or_404(Topic, pk=pk)
-	print(topic)
 	blog = Blog.objects.filter(topic=topic.id)
 
 	return render(

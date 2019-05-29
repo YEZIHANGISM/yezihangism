@@ -75,4 +75,11 @@ django-ckeditor
   1. https://github.com/django-ckeditor/django-ckeditor
   
   
+搜索结果如果要做分页的话，不能简单地和展示分页一样，因为url中会带有参数
+
+    search/?csrfmiddlewaretoken=oK8dulv7rKs7LVVtPZjQHhjmk1u9ZxtJM9fX43oyKKel719bfyPIdO4dPIfBDJVd&search=关键词
+   
+如果要做分页，那么不能和主页的分页展示共用一个模板，两者的路径是不同的。
+函数视图中使用分页可参考  https://github.com/django/django/blob/master/django/views/generic/list.py
+  
   

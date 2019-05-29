@@ -15,7 +15,7 @@
             <div class="blog-list">
                 <h2><a style="width: 90%;" href="{% url 'blog-detail' blog.id %}">{{ blog.title }}</a></h2>
                 <p>{{ blog.summary }}</p>
-                {{ blog.display_tag }}
+                <label>{{ blog.display_tag }}</label>
                 <p style="color: gray;">{{ blog.publish_date }}</p>
                 <hr />
             </div>
@@ -32,7 +32,7 @@
         </form>
     </div>
     <hr />
-    <a class="blog-tags">
+    <div class="blog-tags">
         {% for tag in tags %}
             <a href="{% url 'filter' tag.id %}"><button type="submit" class="label" style="border-radius: 290486px; font-weight: normal; background-color: #148755;">{{ tag }}</button></a>
         {% endfor %}

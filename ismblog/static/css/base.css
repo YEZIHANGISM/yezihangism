@@ -79,6 +79,16 @@ a:hover {
     font-weight: bold;
 }
 
+#btn-color-inherit {
+    background-color: #148755;
+    color: whitesmoke;
+}
+
+#btn-color-inherit:hover {
+    background-color: #117044;
+}
+
+
 .pagination {
     margin: 0;
 }
