@@ -13,14 +13,6 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
-class Topic(models.Model):
-
-    title = models.CharField(max_length=200,
-                             help_text='choose topic for blogs')
-
-    def __str__(self):
-        return self.title
-
 
 # class User(models.Model):
 
@@ -45,7 +37,7 @@ class Blog(models.Model):
     # username = models.CharField(max_length=200, null=True)
     summary = models.TextField(max_length=1000)
     tags = models.ManyToManyField(Tag)
-    topic = models.ForeignKey("Topic", on_delete=models.SET_NULL, null=True)
+    # topic = models.ForeignKey("Topic", on_delete=models.SET_NULL, null=True)
     star = models.IntegerField(default=0)
     pageviews = models.IntegerField(default=0)
 
@@ -58,6 +50,7 @@ class Blog(models.Model):
 
     def display_tag(self):
         return ", ".join([tag.name for tag in self.tags.all()])
+        # return self.tags.all()
 
     def get_absolute_url(self):
         return reverse('blog-detail', args=[str(self.id)])

@@ -20,6 +20,4 @@ urlpatterns = [
 
     path("search/", views.search, name="search"),
     path("filter/<int:pk>", views.filter_by_tag, name="filter"),
-
-    path("topic/", views.topic_list, name="topic"),
 ]

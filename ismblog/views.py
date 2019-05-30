@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Blog, Comment, Tag, Topic
+from .models import Blog, Comment, Tag
 from django.views import generic
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.contrib.auth.decorators import permission_required, login_required
@@ -209,14 +209,3 @@ def filter_by_tag(request, pk):
 		}
 	)
 
-def topic_list(request, pk):
-	topic = get_object_or_404(Topic, pk=pk)
-	blog = Blog.objects.filter(topic=topic.id)
-
-	return render(
-		request,
-		"ismblog/blog_list.html",
-		context={
-			"blog_list":blog
-		}
-	)
