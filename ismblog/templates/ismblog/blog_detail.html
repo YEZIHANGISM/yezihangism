@@ -36,7 +36,7 @@
         <p><strong>Comment</strong></p>
             <ul>
                 {% for comment in blog.comment_set.all %}
-                    <li>{{ comment.content|safe }} - <a href="#">{{ comment.user_name }}</a> - {{ comment.publish_date }}</li>
+                    <li>{{ comment.content|safe }} - <a href="#">{{ comment.user.username }}</a> - {{ comment.publish_date }}</li>
                 {% endfor %}
             </ul>
         {% else %}

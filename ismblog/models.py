@@ -2,7 +2,6 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
-import uuid
 
 # Create your models here.
 class Tag(models.Model):
@@ -13,6 +12,12 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+class Topic(models.Model):
+
+    title = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.title
 
 # class User(models.Model):
 
@@ -30,14 +35,12 @@ class Tag(models.Model):
 class Blog(models.Model):
 
     title = models.CharField(max_length=200)
-    # content = models.TextField()
     content = RichTextUploadingField(config_name="content_config")
     publish_date = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    # username = models.CharField(max_length=200, null=True)
     summary = models.TextField(max_length=1000)
     tags = models.ManyToManyField(Tag)
-    # topic = models.ForeignKey("Topic", on_delete=models.SET_NULL, null=True)
+    topic = models.ForeignKey("Topic", on_delete=models.SET_NULL, null=True)
     star = models.IntegerField(default=0)
     pageviews = models.IntegerField(default=0)
 
@@ -58,13 +61,8 @@ class Blog(models.Model):
 
 class Comment(models.Model):
 
-    # name = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
     blog_id = models.ForeignKey('Blog', on_delete=models.SET_NULL, null=True)
-    blog_title = models.CharField(max_length=200, null=True)
-    # user_name = models.ForeignKey("User", on_delete=models.SET_NULL, null=True)
-    # blog_title = models.CharField(max_length=200)
-    user_name = models.CharField(max_length=200, null=True)
-    # content = models.TextField(max_length=1000)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     content = RichTextUploadingField(max_length=1000, config_name="content_config") # 可以考虑给评论新增配置
     publish_date = models.DateTimeField(auto_now=True)
 

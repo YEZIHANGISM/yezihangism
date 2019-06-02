@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Blog, Comment, Tag
+from .models import Blog, Comment, Tag, Topic
 from django.views import generic
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.contrib.auth.decorators import permission_required, login_required
@@ -90,9 +90,22 @@ class BlogUpdate(LoginRequiredMixin, UpdateView):
 	fields = ['title', 'summary', 'content', 'tags']
 
 
+class TopicListView(generic.ListView):
+	model = Topic
+
+
+def topic_blog_list(request, pk):
+	blog = Blog.objects.filter(topic=pk)
+	return render(
+		request,
+		template_name="ismblog/blog_list.html",
+		context={
+			"blog_list": blog,
+		}
+	)
+
 # class CommentCreate(LoginRequiredMixin, CreateView):
 #     model = Comment
-#'
 #     # success_url = _('blog-detail', args=str(blog.id))
 #     success_url = _('users')
 #     fields = ['content']
@@ -131,9 +144,8 @@ def create_comment(request, pk):
 
 		if form.is_valid():
 			form = form.save(commit=False)
-			form.blog_title = blog_info.title
 			form.blog_id = blog_info
-			form.user_name = request.user.username
+			form.user = request.user
 			form.save()
 
 			return HttpResponseRedirect(reverse('blog-detail', args=str(blog_info.id)))
@@ -189,7 +201,7 @@ def search(request):
 
 	return render(
 		request,
-		"ismblog/blog_list.html",
+		template_name="ismblog/blog_list.html",
 		context={
 			"blog_list": blog,
 			"empty": empty
@@ -203,7 +215,7 @@ def filter_by_tag(request, pk):
 
 	return render(
 		request,
-		"ismblog/blog_list.html",
+		template_name="ismblog/blog_list.html",
 		context={
 			"blog_list":blog
 		}

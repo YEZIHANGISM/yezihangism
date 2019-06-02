@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Blog, Comment, Tag
+from .models import Blog, Comment, Tag, Topic
 
 # Register your models here.
 
@@ -17,4 +17,8 @@ class CommentAdmin(admin.ModelAdmin):
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Topic)
+class TopicAdmin(admin.ModelAdmin):
     pass

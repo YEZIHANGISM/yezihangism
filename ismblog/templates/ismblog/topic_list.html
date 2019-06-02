@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>专题</title>
+{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for topic in topic_list %}
+            <li><h2><a href="{% url 'topic-blog' topic.id %}">{{ topic }}</a></h2></li>
+            <hr />
+        {% endfor %}
+
+    </ul>
+{% endblock %}

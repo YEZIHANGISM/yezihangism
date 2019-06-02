@@ -20,4 +20,7 @@ urlpatterns = [
 
     path("search/", views.search, name="search"),
     path("filter/<int:pk>", views.filter_by_tag, name="filter"),
+
+    path("topic/", views.TopicListView.as_view(), name="topic"),
+    path("topic/<int:pk>", views.topic_blog_list, name="topic-blog"),
 ]
