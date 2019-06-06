@@ -47,14 +47,14 @@
     <hr />
     <div style="font-weight: bold">
         {% if previous %}
-            <a href="{% url 'blog-detail' previous.id %}">< {{ previous }}</a>
+            <a href="{% url 'blog-detail' previous.id %}"><i class="fa fa-angle-left"></i> {{ previous }}</a>
         {% else %}
-            <span>< no earlier</span>
+            <span>no earlier</span>
         {% endif %}
         {% if next %}
-            <a href="{% url 'blog-detail' next.id %}" style="float: right;">{{ next }} ></a>
+            <a href="{% url 'blog-detail' next.id %}" style="float: right;">{{ next }} <i class="fa fa-angle-right"></i></a>
         {% else %}
-            <span style="float: right;">no more ></span>
+            <span style="float: right;">no more</span>
         {% endif %}
     </div>
 {% endblock %}

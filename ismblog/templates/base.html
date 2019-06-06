@@ -9,6 +9,7 @@
     {% load static %}
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/logo_head.svg' %}">
     <link href='http://fonts.font.im/css?family=Lato|Shadows+Into+Light' rel='stylesheet' type='text/css'>
     <link href="https://fonts.font.im/css?family=Bitter" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'ckeditor/ckeditor/default.css' %}">
@@ -52,7 +53,8 @@
         <div class="container">
             <nav>
                 <ul class="ismblog-ul-left">
-                    <li><a href="{% url 'blogs' %}">ISMBlog</a></li>
+                    <li><a href="{% url 'blogs' %}"><embed src="{% static 'images/logo.svg' %}" style="width:30px;height:20px;color:inherit;" />YEZIHANG<span style="font-family: 'Shadows Into Light', cursive;color:#148755;">ISM</span></a></li>
+                    <li><a href="{% url 'blogs' %}">Home</a></li>
                     {% if user.is_staff %}
                         <li><a href="{% url 'index' %}">Management</a></li>
                     {% endif %}
@@ -92,13 +94,12 @@
             <div class="row">
                 <div class="col-md-4">
                     <h2>Contact</h2>
-                    <ul class="fa-ul">
-                        <li><i class="fa-li fa fa-github"></i>  Github: <a href="https://github.com/YEZIHANGISM">YEZIHANGISM</a></li>
-                        <li><i class="fa-li fa fa-envelope "></i>  Eamil: <a href="">yezihangism@gamil.com</a></li>
-                        <li><i class="fa-li fa fa-instagram"></i>  Instagram: <a href="">@yezihang_ism</a></li>
-                        <li><i class="fa-li fa fa-wechat"></i>  Wechat: <a href="">@IAMYEZIHANG</a></li>
-                        <li><i class="fa-li fa fa-qq"></i>  QQ: <a href="">954013871@YEZIHANGSISM</a></li>
-                    </ul>
+                    <div class="footer-icons">
+                        <a href=""><i class="fa fa-wechat fa-2x"></i></a>
+                        <a href=""><i class="fa fa-instagram fa-2x"></i></a>
+                        <a href=""><i class="fa fa-envelope fa-2x"></i></a>
+                        <a href=""><i class="fa fa-qq fa-2x"></i></a>
+                    </div>
                 </div>
                 <div class="col-md-8">
                     <h2>友情链接</h2>

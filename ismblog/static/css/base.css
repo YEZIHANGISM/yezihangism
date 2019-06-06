@@ -111,20 +111,10 @@ footer {
     padding: 50px 0;
 }
 
-footer ul {
-    list-style-type: none;
-    padding: 0;
+.footer-icons a {
+    padding-right: 20px;
 }
 
-footer li {
-    text-decoration: none;
-    margin: 5px 0;
-}
-
-footer a {
+.footer-icons a:hover {
     color: inherit;
-}
-
-footer a:hover {
-    color: whitesmoke;
 }
