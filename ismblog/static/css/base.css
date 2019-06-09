@@ -92,7 +92,6 @@ a:hover {
     background-color: #117044;
 }
 
-
 .pagination {
     margin: 0;
 }
@@ -117,4 +116,27 @@ footer {
 
 .footer-icons a:hover {
     color: inherit;
+}
+
+.footer-ul li {
+    float: left;
+    padding: 0 10px;
+}
+
+.footer-ul li a:hover {
+    color: white;
+}
+
+.footer-wechat img {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    display: none;
+}
+
+.footer-qq img {
+    width: 120px;
+    height: 150px;
+    position: relative;
+    display: none;
 }

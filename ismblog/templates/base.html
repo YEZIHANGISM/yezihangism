@@ -40,6 +40,34 @@
                 }
             })
         })
+
+        $(function () {
+            $("#wechat").mouseover(function () {
+                $(".footer-wechat img").css({
+                    "display":"block",
+                    "position":"absolute",
+                    "top":"-30px",
+                    "left":"20px"
+                });
+            });
+            $("#wechat").mouseleave(function () {
+                $(".footer-wechat img").css({"display":"none"});
+            })
+        })
+
+        $(function () {
+            $("#qq").mouseover(function () {
+                $(".footer-qq img").css({
+                    "display":"block",
+                    "position":"absolute",
+                    "top":"-30px",
+                    "left":"250px"
+                });
+            });
+            $("#qq").mouseleave(function () {
+                $(".footer-qq img").css({"display":"none"});
+            })
+        })
     </script>
 
 </head>
@@ -94,12 +122,22 @@
             <div class="row">
                 <div class="col-md-4">
                     <h2>Contact</h2>
-                    <div class="footer-icons">
-                        <a href=""><i class="fa fa-wechat fa-2x"></i></a>
-                        <a href=""><i class="fa fa-instagram fa-2x"></i></a>
-                        <a href=""><i class="fa fa-envelope fa-2x"></i></a>
-                        <a href=""><i class="fa fa-qq fa-2x"></i></a>
-                    </div>
+                    <ul class="footer-ul">
+                        <li>
+                            <a href=""><i class="fa fa-wechat fa-2x" id="wechat"></i></a>
+                            <div class="footer-wechat">
+                                <img src="{% static 'images/wechat.jpg' %}" title="扫描二维码">
+                            </div>
+                        </li>
+                        <li><a href=""><i class="fa fa-instagram fa-2x" id="ins"></i></a></li>
+                        <li><a href=""><i class="fa fa-envelope fa-2x" id="mail"></i></a></li>
+                        <li>
+                            <a href=""><i class="fa fa-qq fa-2x" id="qq"></i></a>
+                            <div class="footer-qq">
+                                <img src="{% static 'images/qq.jpg' %}" title="扫描二维码">
+                            </div>
+                        </li>
+                    </ul>
                 </div>
                 <div class="col-md-8">
                     <h2>友情链接</h2>
