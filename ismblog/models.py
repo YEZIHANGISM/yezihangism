@@ -12,6 +12,7 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+
 class Topic(models.Model):
 
     title = models.CharField(max_length=200)
@@ -42,7 +43,7 @@ class Blog(models.Model):
     tags = models.ManyToManyField(Tag)
     topic = models.ForeignKey("Topic", on_delete=models.SET_NULL, null=True)
     star = models.IntegerField(default=0)
-    pageviews = models.IntegerField(default=0)
+    pageviews = models.PositiveIntegerField(default=0)
 
     class Meta:
         ordering = ["-publish_date"]
@@ -57,6 +58,7 @@ class Blog(models.Model):
 
     def get_absolute_url(self):
         return reverse('blog-detail', args=[str(self.id)])
+
 
 
 class Comment(models.Model):

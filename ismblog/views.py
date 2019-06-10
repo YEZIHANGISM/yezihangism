@@ -80,6 +80,9 @@ class BlogDetailView(generic.DetailView):
 	def has_previous(self):
 		return self.current_id > 1
 
+	def get_queryset(self):
+		pass
+
 
 class BlogDelete(LoginRequiredMixin, DeleteView):
 	model = Blog
@@ -87,7 +90,7 @@ class BlogDelete(LoginRequiredMixin, DeleteView):
 
 class BlogUpdate(LoginRequiredMixin, UpdateView):
 	model = Blog
-	fields = ['title', 'summary', 'content', 'tags']
+	fields = ['title', 'summary', 'content', 'tags', 'topic']
 
 
 class TopicListView(generic.ListView):

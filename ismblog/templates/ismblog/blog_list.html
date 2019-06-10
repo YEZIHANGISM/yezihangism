@@ -14,7 +14,7 @@
         {% for blog in blog_list %}
             <div class="blog-list">
                 <h2><a style="width: 90%;" href="{% url 'blog-detail' blog.id %}">{{ blog.title }}</a></h2>
-                <p>{{ blog.summary }}</p>
+                <p>{{ blog.content|safe|striptags|truncatechars:100 }}...</p>
                 <label>{{ blog.display_tag }}</label>
                 <p style="color: gray;">{{ blog.publish_date }}</p>
                 <hr />
