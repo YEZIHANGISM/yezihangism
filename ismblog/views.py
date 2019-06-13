@@ -81,7 +81,14 @@ class BlogDetailView(generic.DetailView):
 		return self.current_id > 1
 
 	def get_queryset(self):
-		pass
+		pk = self.kwargs.get("pk")
+		model = Blog.objects.get(id=pk)
+		print("model")
+		print(model.id)
+		model.pageviews += 1
+		print("done")
+		model.save()
+		return model
 
 
 class BlogDelete(LoginRequiredMixin, DeleteView):

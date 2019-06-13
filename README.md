@@ -10,6 +10,8 @@ for my own website
   3. 从前面一个HTML 表单提交过来的数据
 最后一种情况最有趣，因为这使得用户不仅可以阅读网站，而且还可以将信息发回给它。
 
+当我们使用编辑类视图——例如CreateView——等，我们需要在mmodels中定义get_absolute_url()方法。这是因为通用视图在对一个对象完成编辑后，需要一个返回链接。
+
 form类的运行顺序为: init, clean, validate, save，
 运行forms.is_valid()时一次调用clean和validate
 is_valid()判断为True后，如果入库出现问题，就不能再将错误信息封装到form的错误结构中
