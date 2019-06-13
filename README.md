@@ -123,4 +123,6 @@ objects用于取代模型默认的manager（objects），这样，我们就可�
 
 博客浏览量自增。
 
+类视图中重写get_queryset函数，获取相应blog，blog浏览量字段+=1，再保存
+
 排序条件：日期倒序、浏览量倒序
