@@ -32,8 +32,15 @@
         <p><strong>tags: </strong>
             {{ blog.display_tag }}
         </p>
+        <form action="" method="post">
+            <table>
+                {{ form.media }}
+                {{ form.content }}
+            </table>
+            <input type="submit" value="Comment" />
+        </form>
         {% if blog.comment_set.all %}
-        <p><strong>Comment</strong></p>
+            <p><strong>Comment</strong></p>
             <ul>
                 {% for comment in blog.comment_set.all %}
                     <li>{{ comment.content|safe }} - <a href="#">{{ comment.user.username }}</a> - {{ comment.publish_date }}</li>
@@ -43,7 +50,7 @@
             <p>no comment yet.</p>
         {% endif %}
     </div>
-    <a href="{% url 'comment-create' blog.id %}"><input type="button" value="Comment" /></a>
+{#    <a href="{% url 'comment-create' blog.id %}"><input type="button" value="Comment" /></a>#}
     <hr />
     <div style="font-weight: bold">
         {% if previous %}

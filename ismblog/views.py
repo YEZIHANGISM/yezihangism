@@ -62,6 +62,18 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
 class BlogDetailView(generic.DetailView):
 	model = Blog
 
+	# def post(self, request):
+	# 	pk = self.kwargs.get("pk")
+	# 	blog = Blog.objects.get(id=pk)
+	# 	form = CreateCommentModelForm(request.POST)
+	# 	if form.is_valid():
+	# 		form = form.save(commit=False)
+	# 		form.blog = blog.id
+	# 		form.user = self.request.user
+	# 		form.save()
+	# 		return HttpResponseRedirect(reverse('blog-detail', args=str(blog.id)))
+
+
 	def get_context_data(self, **kwargs):
 		context = super(BlogDetailView, self).get_context_data(**kwargs)
 		self.current_id = context["blog"].id
@@ -72,7 +84,18 @@ class BlogDetailView(generic.DetailView):
 		if self.has_next():
 			context["next"] = Blog.objects.filter(id__gt=self.current_id).order_by("id").first()
 
+		form = CreateCommentModelForm(self.request.POST)
+		if form.is_valid():
+			form = form.save(commit=False)
+			form.blog = context["blog"].id
+			form.user = self.request.user
+			form.save()
+
+			return HttpResponseRedirect(reverse('blog-detail', args=str(context["blog"].id)))
+		context["form"] = form
+
 		return context
+
 
 	def has_next(self):
 		return self.current_id < self.last_id
@@ -80,15 +103,19 @@ class BlogDetailView(generic.DetailView):
 	def has_previous(self):
 		return self.current_id > 1
 
-	def get_queryset(self):
-		pk = self.kwargs.get("pk")
-		model = Blog.objects.get(id=pk)
-		print("model")
-		print(model.id)
-		model.pageviews += 1
-		print("done")
-		model.save()
+	def get_object(self):
+		model = super(BlogDetailView, self).get_object()
+		model.auto_increment_views()
 		return model
+
+	# def get_queryset(self):
+	# 	qs = super(BlogDetailView, self).get_queryset()
+	# 	pk = self.kwargs.get("pk")
+	# 	# model = Blog.objects.get(id=pk)
+	# 	model = Blog.objects.all()
+	# 	model = self.get_object(model)
+	# 	model.auto_increment_views()
+	# 	return model
 
 
 class BlogDelete(LoginRequiredMixin, DeleteView):
@@ -154,12 +181,11 @@ def create_comment(request, pk):
 
 		if form.is_valid():
 			form = form.save(commit=False)
-			form.blog_id = blog_info
+			form.blog = blog_info
 			form.user = request.user
 			form.save()
 
 			return HttpResponseRedirect(reverse('blog-detail', args=str(blog_info.id)))
-
 	else:
 		form = CreateCommentModelForm()
 

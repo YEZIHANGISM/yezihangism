@@ -12,6 +12,14 @@ for my own website
 
 当我们使用编辑类视图——例如CreateView——等，我们需要在mmodels中定义get_absolute_url()方法。这是因为通用视图在对一个对象完成编辑后，需要一个返回链接。
 
+展示类视图中
+    
+    model = Model
+就相当于
+
+    model = Model.objects.get()
+至于是get()，或者all()，取决于你的类视图继承自哪个父类视图
+
 form类的运行顺序为: init, clean, validate, save，
 运行forms.is_valid()时一次调用clean和validate
 is_valid()判断为True后，如果入库出现问题，就不能再将错误信息封装到form的错误结构中
@@ -121,8 +129,6 @@ objects用于取代模型默认的manager（objects），这样，我们就可�
 
 留言功能，评论功能，需要登录权限，需要开放注册页面。
 
-博客浏览量自增。
-
-类视图中重写get_queryset函数，获取相应blog，blog浏览量字段+=1，再保存
+博客浏览量自增。类视图中重写get_object()函数，获取相应blog，blog浏览量字段+=1，再保存
 
 排序条件：日期倒序、浏览量倒序

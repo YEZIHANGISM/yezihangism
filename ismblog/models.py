@@ -59,11 +59,15 @@ class Blog(models.Model):
     def get_absolute_url(self):
         return reverse('blog-detail', args=[str(self.id)])
 
+    def auto_increment_views(self):
+        self.pageviews += 1
+        self.save(update_fields=["pageviews"])
+
 
 
 class Comment(models.Model):
 
-    blog_id = models.ForeignKey('Blog', on_delete=models.SET_NULL, null=True)
+    blog = models.ForeignKey('Blog', on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     content = RichTextUploadingField(max_length=1000, config_name="content_config") # 可以考虑给评论新增配置
     publish_date = models.DateTimeField(auto_now=True)
