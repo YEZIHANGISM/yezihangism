@@ -67,13 +67,9 @@
 {% endblock %}
 
 {% block sidebar %}
-    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, corporis et harum in labore laborum magnam minima non odit provident quasi ratione reiciendis? Consectetur impedit odio, quaerat saepe veniam voluptate.</span>
-    <div>
-        <form action="">
-            <input type="text">
-            <button type="submit"></button>
-        </form>
-    </div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad aspernatur blanditiis eaque, enim, facere facilis ipsam maxime nisi nobis odio odit omnis placeat quibusdam ratione reiciendis repellendus. Beatae, id?</p>
-    <br><br><br><br><br><br><br><br><br><br>
+    <h3>热门文章</h3>
+    {% for blog in blog_list %}
+        <hr />
+        <a href="{% url 'blog-detail' blog.id %}">{{ blog.title }}</a>
+    {% endfor %}
 {% endblock %}

@@ -76,6 +76,8 @@ class BlogDetailView(generic.DetailView):
 
 	def get_context_data(self, **kwargs):
 		context = super(BlogDetailView, self).get_context_data(**kwargs)
+		blog_list = BlogListView()
+		queryset = blog_list.get_queryset()
 		self.current_id = context["blog"].id
 		self.first_id = Blog.objects.all().order_by("id").first().id
 		self.last_id = Blog.objects.all().order_by("id").last().id
@@ -93,6 +95,7 @@ class BlogDetailView(generic.DetailView):
 
 			return HttpResponseRedirect(reverse('blog-detail', args=str(context["blog"].id)))
 		context["form"] = form
+		context["blog_list"]= queryset
 
 		return context
 

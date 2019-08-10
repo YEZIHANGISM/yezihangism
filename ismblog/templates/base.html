@@ -41,33 +41,7 @@
             })
         })
 
-        $(function () {
-            $("#wechat").mouseover(function () {
-                $(".footer-wechat img").css({
-                    "display":"block",
-                    "position":"absolute",
-                    "top":"-30px",
-                    "left":"20px"
-                });
-            });
-            $("#wechat").mouseleave(function () {
-                $(".footer-wechat img").css({"display":"none"});
-            })
-        })
 
-        $(function () {
-            $("#qq").mouseover(function () {
-                $(".footer-qq img").css({
-                    "display":"block",
-                    "position":"absolute",
-                    "top":"-30px",
-                    "left":"250px"
-                });
-            });
-            $("#qq").mouseleave(function () {
-                $(".footer-qq img").css({"display":"none"});
-            })
-        })
     </script>
 
 </head>
@@ -82,9 +56,9 @@
             <nav>
                 <ul class="ismblog-ul-left">
                     <li><a href="{% url 'blogs' %}"><embed src="{% static 'images/logo.svg' %}" style="width:30px;height:20px;color:inherit;" />YEZIHANG<span style="font-family: 'Shadows Into Light', cursive;color:#148755;">ISM</span></a></li>
-                    <li><a href="{% url 'blogs' %}">Home</a></li>
+{#                    <li><a href="{% url 'blogs' %}">主页</a></li>#}
                     {% if user.is_staff %}
-                        <li><a href="{% url 'index' %}">Management</a></li>
+                        <li><a href="{% url 'index' %}">管理</a></li>
                     {% endif %}
                     <li><a href="{% url 'topic' %}">专题</a></li>
                 </ul>
@@ -120,32 +94,31 @@
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <h2>Contact</h2>
-                    <ul class="footer-ul">
-                        <li>
-                            <a href=""><i class="fa fa-wechat fa-2x" id="wechat"></i></a>
-                            <div class="footer-wechat">
-                                <img src="{% static 'images/wechat.jpg' %}" title="扫描二维码">
-                            </div>
-                        </li>
-                        <li><a href=""><i class="fa fa-instagram fa-2x" id="ins"></i></a></li>
-                        <li><a href=""><i class="fa fa-envelope fa-2x" id="mail"></i></a></li>
-                        <li>
-                            <a href=""><i class="fa fa-qq fa-2x" id="qq"></i></a>
-                            <div class="footer-qq">
-                                <img src="{% static 'images/qq.jpg' %}" title="扫描二维码">
-                            </div>
-                        </li>
+                <div class="col-md-4" style="border-right: lightgrey 1px solid">
+                    <h3>联系我</h3>
+                    <ul class="fa-ul">
+                        <li><i class="fa-li fa fa-wechat" id="wechat"></i>IAMYEZIHANG</li>
+                        <li><i class="fa-li fa fa-phone-square" id="phone"></i>13824848942</li>
+                        <li><i class="fa-li fa fa-envelope" id="mail"></i>yezihangism@gmail.com</li>
+                        <li><i class="fa-li fa fa-qq" id="qq"></i>954013871</li>
+                        <li><i class="fa-li fa fa-github"></i>YEZIHANGISM</li>
+                        <li><i class="fa-li fa fa-stack-overflow"></i>YEZIHANG</li>
                     </ul>
                 </div>
-                <div class="col-md-8">
-                    <h2>友情链接</h2>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda atque consequatur dicta, dolore eos est eum ipsam ipsum maiores mollitia nostrum pariatur placeat porro quaerat quas quasi, tenetur veritatis.
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquid culpa cupiditate dolore enim, iure modi, nemo nisi numquam placeat porro possimus recusandae repellat sequi soluta ullam ut voluptate, voluptatum.</p>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium, atque eos eveniet id impedit, inventore iusto laudantium, molestiae odit quod recusandae repellendus sit tempore voluptas. Assumenda facilis omnis quos.</span>
-                </div>
+                <div class="col-md-6">
+                    <div class="container">
+                        <h3>友情链接</h3>
+                        <ul class="fa-ul">
+                            <li><i class="fa-li fa fa-font-awesome" id="fontawesome"></i><a href="http://fontawesome.dashgame.com">FontAwesome</a></li>
+                            <li><i class="fa-li fa fa-html5"></i><a href="https://developer.mozilla.org/zh-CN/docs/Learn">MDN Web开发学习网站</a></li>
+                            <li><i class="fa-li fa fa-google"></i><a href="https://console.cloud.google.com/">Google Cloud</a></li>
+                            <li><i class="fa-li fa fa-link"></i><a href="https://www.djangoproject.com/">Django官方网站</a></li>
+                            <li><i class="fa-li fa fa-link"></i><a href="https://codepen.io/pen/">CodePen 前端在线编辑网站</a></li>
+                        </ul>
+                    </div>
+               </div>
             </div>
+
         </div>
     </footer>
 </body>

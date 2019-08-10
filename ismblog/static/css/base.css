@@ -118,14 +118,15 @@ footer {
     color: inherit;
 }
 
-.footer-ul li {
-    float: left;
-    padding: 0 10px;
+.footer-div{
+    width: 500px;
+    margin: 0 auto;
 }
 
-.footer-ul li a:hover {
-    color: white;
+.footer-div i{
+    padding: 0 40px;
 }
+
 
 .footer-wechat img {
     width: 80px;
