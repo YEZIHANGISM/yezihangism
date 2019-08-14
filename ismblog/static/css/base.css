@@ -9,6 +9,10 @@ li {
     list-style-type: none;
 }
 
+a {
+    color: inherit;
+}
+
 h1,h2,h3,h4,h5,h6 {
     margin: 10px 0;
     padding: 0;
@@ -55,17 +59,18 @@ p {
     position: relative;
 }
 
-a {
-    /*color: #1a8d3d;*/
-    color: inherit;
+
+
+#ismblog_footer_div a:hover{
+    color: lightgrey;
 }
 
 a:hover {
     color: #137a4b;
+    text-decoration: none;
 }
 
 .ismblog-content {
-    /*padding-bottom: 40px;*/
     margin: 40px 0;
 }
 
@@ -77,7 +82,6 @@ a:hover {
 
 .ismblog-header span {
     font-size: 95px;
-    /*color: #137a4b;*/
     color: whitesmoke;
 	font-family: 'Shadows Into Light', cursive;
     font-weight: bold;
@@ -96,48 +100,8 @@ a:hover {
     margin: 0;
 }
 
-p img {
-    width: auto;
-    height: auto;
-    display: block;
-    max-width: 100%;
-}
-
 footer {
     background-color: #148755;
-    /*box-shadow: 0 9px 7px -7px gray inset;*/
     color: whitesmoke;
     padding: 50px 0;
-}
-
-.footer-icons a {
-    padding-right: 20px;
-}
-
-.footer-icons a:hover {
-    color: inherit;
-}
-
-.footer-div{
-    width: 500px;
-    margin: 0 auto;
-}
-
-.footer-div i{
-    padding: 0 40px;
-}
-
-
-.footer-wechat img {
-    width: 80px;
-    height: 80px;
-    position: relative;
-    display: none;
-}
-
-.footer-qq img {
-    width: 120px;
-    height: 150px;
-    position: relative;
-    display: none;
 }
