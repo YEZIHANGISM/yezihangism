@@ -41,8 +41,6 @@
             })
 
         })
-
-
     </script>
 
 </head>
@@ -65,11 +63,12 @@
                 </ul>
                 <ul class="ismblog-ul-right">
                     {% if user.is_authenticated %}
-                        <li><a href="{% url 'blog-create' %}">New Blog</a></li>
+                        <li><a href="{% url 'blog-create' %}">写博客</a></li>
                         <li><a href="{% url 'user-detail' user.id %}">{{ user.get_username }}</a></li>
-                        <li><a href="{% url 'logout' %}?next=/">Logout</a></li>
+                        <li><a href="{% url 'logout' %}?next=/">注销</a></li>
                     {% else %}
-                        <li><a href="{% url 'login' %}?next={% if request.path == '/accounts/login/' %}/{% else %}{{request.path}}{% endif %}">Login</a></li>
+                        <li><a href="{% url 'leavemsg' %}">给我留言</a></li>
+                        <li><a href="{% url 'login' %}?next={% if request.path == '/accounts/login/' %}/{% else %}{{request.path}}{% endif %}">登录</a></li>
                     {% endif %}
                 </ul>
             </nav>

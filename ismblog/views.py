@@ -5,8 +5,8 @@ from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMix
 from django.contrib.auth.decorators import permission_required, login_required
 from django.views.generic.edit import DeleteView, CreateView, UpdateView
 from django.urls import reverse_lazy as _, reverse
-from .forms import CreateCommentModelForm, CreateUserForm, CreateBlogModelForm
-from django.http import HttpResponseRedirect
+from .forms import CreateCommentModelForm, CreateUserForm, CreateBlogModelForm, LeaveMsgModelForm
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, InvalidPage
@@ -197,6 +197,12 @@ def create_comment(request, pk):
 		template_name='ismblog/comment_form.html',
 		context={"form":form, "blog":blog_info}
 	)
+
+class LeavemsgView(generic.CreateView):
+
+	form_class = LeaveMsgModelForm
+	template_name = "ismblog/message_form.html"
+	success_url = _('blogs')
 
 
 def create_user(request):

@@ -14,7 +14,7 @@
     <h1>
         <strong>{{ blog.title }}</strong>
         <br />
-        <small>author: {{ blog.user.username }}</small>
+        <small>{{ blog.user.username }}</small>
     </h1>
     {{ blog.summary|safe }}
     <hr />
@@ -27,28 +27,29 @@
                 <a href="{% url 'blog-delete' blog.id %}"><button class="btn btn-danger">Delete</button></a>
             </div>
         {% endif %}
-        <p><strong>created at:  </strong>{{ blog.publish_date }}</p>
+        <p>{{ blog.publish_date }}</p>
 
-        <p><strong>tags: </strong>
+        <p><strong>分类: </strong>
             {{ blog.display_tag }}
         </p>
-        <form action="" method="post">
-            <table>
-                {{ form.media }}
-                {{ form.content }}
-            </table>
-            <input type="submit" value="Comment" />
-        </form>
-        {% if blog.comment_set.all %}
-            <p><strong>Comment</strong></p>
-            <ul>
-                {% for comment in blog.comment_set.all %}
-                    <li>{{ comment.content|safe }} - <a href="#">{{ comment.user.username }}</a> - {{ comment.publish_date }}</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>no comment yet.</p>
-        {% endif %}
+
+{#        <form action="" method="post">#}
+{#            <table>#}
+{#                {{ form.media }}#}
+{#                {{ form.content }}#}
+{#            </table>#}
+{#            <input type="submit" value="Comment" />#}
+{#        </form>#}
+{#        {% if blog.comment_set.all %}#}
+{#            <p><strong>Comment</strong></p>#}
+{#            <ul>#}
+{#                {% for comment in blog.comment_set.all %}#}
+{#                    <li>{{ comment.content|safe }} - <a href="#">{{ comment.user.username }}</a> - {{ comment.publish_date }}</li>#}
+{#                {% endfor %}#}
+{#            </ul>#}
+{#        {% else %}#}
+{#            <p>no comment yet.</p>#}
+{#        {% endif %}#}
     </div>
 {#    <a href="{% url 'comment-create' blog.id %}"><input type="button" value="Comment" /></a>#}
     <hr />

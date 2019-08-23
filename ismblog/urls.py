@@ -23,4 +23,6 @@ urlpatterns = [
 
     path("topic/", views.TopicListView.as_view(), name="topic"),
     path("topic/<int:pk>", views.topic_blog_list, name="topic-blog"),
+
+    path("leavemsg/", views.LeavemsgView.as_view(), name='leavemsg')
 ]

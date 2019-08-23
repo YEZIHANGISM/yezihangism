@@ -77,3 +77,12 @@ class Comment(models.Model):
 
     def __str__(self):
         return "comment user: %s"%self.user_name
+
+
+class Message(models.Model):
+
+    content = RichTextUploadingField(max_length=1000, config_name='content_config')
+    date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "leave message date"%self.date

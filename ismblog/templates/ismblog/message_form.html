@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>给我留言</title>
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        <table>
+            {{ form.media }}
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit" />
+    </form>
+{% endblock %}

@@ -1,7 +1,7 @@
 from django.forms import *
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
-from .models import Blog, Comment
+from .models import Blog, Comment, Message
 from django.contrib.auth.models import User
 
 class CreateCommentModelForm(ModelForm):
@@ -40,3 +40,10 @@ class CreateBlogModelForm(ModelForm):
     class Meta:
         model = Blog
         fields = ['title', 'summary', 'content', 'tags', 'topic']
+
+
+class LeaveMsgModelForm(ModelForm):
+
+	class Meta:
+		model = Message
+		fields = ['content']
