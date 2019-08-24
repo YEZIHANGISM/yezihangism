@@ -5,11 +5,13 @@
 {% endblock %}
 
 {% block content %}
+    <p>嗨，如果对网站有什么建议或意见，请写在下面吧！:)</p>
+    <hr>
     <form action="" method="post">
         <table>
             {{ form.media }}
-            {{ form.as_table }}
+            {{ form.as_p }}
         </table>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="留言" />
     </form>
 {% endblock %}
