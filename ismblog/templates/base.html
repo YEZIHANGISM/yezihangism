@@ -58,6 +58,7 @@
 {#                    <li><a href="{% url 'blogs' %}">主页</a></li>#}
                     {% if user.is_staff %}
                         <li><a href="{% url 'index' %}">管理</a></li>
+                        <li><a href="{% url 'messages' %}">留言列表</a></li>
                     {% endif %}
                     <li><a href="{% url 'topic' %}">专题</a></li>
                 </ul>

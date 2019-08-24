@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>留言列表</title>
+{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for msg in message_list %}
+            {{ msg.content|safe }}
+            <br>
+            {{ msg.date }}
+            <hr />
+        {% endfor %}
+
+    </ul>
+{% endblock %}

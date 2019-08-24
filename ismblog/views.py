@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Blog, Comment, Tag, Topic
+from .models import Blog, Comment, Tag, Topic, Message
 from django.views import generic
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.contrib.auth.decorators import permission_required, login_required
@@ -132,6 +132,9 @@ class BlogUpdate(LoginRequiredMixin, UpdateView):
 
 class TopicListView(generic.ListView):
 	model = Topic
+
+class MsgListView(generic.ListView):
+	model = Message
 
 
 def topic_blog_list(request, pk):
