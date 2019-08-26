@@ -237,7 +237,7 @@ def search(request):
 	# search是input中的name
 	name = request.GET.get('search')
 	if name == "":
-		empty = "search word is required"
+		empty = "请输入搜索关键词！"
 
 	blog = Blog.objects.filter(title__icontains=name)
 

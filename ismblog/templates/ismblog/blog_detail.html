@@ -57,12 +57,12 @@
         {% if previous %}
             <a href="{% url 'blog-detail' previous.id %}"><i class="fa fa-angle-left"></i> {{ previous }}</a>
         {% else %}
-            <span>no earlier</span>
+            <span>没有了</span>
         {% endif %}
         {% if next %}
             <a href="{% url 'blog-detail' next.id %}" style="float: right;">{{ next }} <i class="fa fa-angle-right"></i></a>
         {% else %}
-            <span style="float: right;">no more</span>
+            <span style="float: right;">没有了</span>
         {% endif %}
     </div>
 {% endblock %}
