@@ -10,7 +10,8 @@ li {
 }
 
 a {
-    color: inherit;
+    /*color: inherit;*/
+    color: #148755;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -59,7 +60,9 @@ p {
     position: relative;
 }
 
-
+#ismblog_footer_div a{
+    color: white;
+}
 
 #ismblog_footer_div a:hover{
     color: lightgrey;
@@ -67,7 +70,7 @@ p {
 
 a:hover {
     color: #137a4b;
-    text-decoration: none;
+    /*text-decoration: none;*/
 }
 
 .ismblog-content {
