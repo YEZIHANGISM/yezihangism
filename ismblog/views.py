@@ -127,7 +127,7 @@ class BlogDelete(LoginRequiredMixin, DeleteView):
 
 class BlogUpdate(LoginRequiredMixin, UpdateView):
 	model = Blog
-	fields = ['title', 'summary', 'content', 'tags', 'topic']
+	fields = ['title', 'content', 'tags', 'topic']
 
 
 class TopicListView(generic.ListView):

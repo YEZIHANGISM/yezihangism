@@ -26,11 +26,11 @@ class CreateUserForm(Form):
 		email = cleaned_data.get("email")
 
 		if password1 != password2:
-			raise ValidationError(_("Inconsistent password"))
+			raise ValidationError(_("密码不一致！！！"))
 		elif User.objects.filter(username=username):
-			raise ValidationError(_("this username already in use"))
+			raise ValidationError(_("用户名已存在"))
 		elif User.objects.filter(email=email):
-			raise ValidationError(_("the email already in use"))
+			raise ValidationError(_("邮箱已被使用"))
 
 
 		return cleaned_data
@@ -39,7 +39,7 @@ class CreateBlogModelForm(ModelForm):
 
     class Meta:
         model = Blog
-        fields = ['title', 'summary', 'content', 'tags', 'topic']
+        fields = ['title', 'content', 'tags', 'topic']
 
 
 class LeaveMsgModelForm(ModelForm):
