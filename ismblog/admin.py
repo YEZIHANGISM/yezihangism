@@ -9,7 +9,8 @@ from .models import Blog, Comment, Tag, Topic, Message
 
 @admin.register(Blog)
 class BlogAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("title", "id", "publish_date", "topic")
+    list_filter = ("topic", "publish_date")
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
@@ -19,10 +20,15 @@ class CommentAdmin(admin.ModelAdmin):
 class TagAdmin(admin.ModelAdmin):
     pass
 
+class TopicInline(admin.TabularInline):
+    model = Blog
+
 @admin.register(Topic)
 class TopicAdmin(admin.ModelAdmin):
-    pass
+    inlines = [TopicInline]
 
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
     pass
+
+

@@ -3,7 +3,7 @@ from ismblog import views
 
 urlpatterns = [
 	path("", views.BlogListView.as_view(), name='blogs'),
-    path("management/", views.index, name="index"),
+    # path("management/", views.index, name="index"),
     
     path("users/", views.UserListView.as_view(), name="users"),
     path("user/<int:pk>", views.UserDetailView.as_view(), name="user-detail"),

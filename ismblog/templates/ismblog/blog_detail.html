@@ -14,15 +14,13 @@
     <h1>
         <strong>{{ blog.title }}</strong>
         <br />
-        <small><i class="fa fa-user-circle">: </i>{{ blog.user.username }}</small>
-        <small><p><strong><i class="fa fa-tags"></i>: </strong>
-            {{ blog.display_tag }}
-        </p></small>
+        <small><p><i class="fa fa-user-circle"></i>{{ blog.user.username }}</p></small>
+        <small><p><i class="fa fa-tags"></i>{{ blog.display_tag }}</p></small>
     </h1>
     <hr />
     {{ blog.content|safe }}
     <div>
-        <p style="text-align: right">{{ blog.publish_date }}</p>
+        <p style="text-align: right">{{ blog.init_date }}</p>
         <hr />
         {% if user.is_staff %}
             <div>

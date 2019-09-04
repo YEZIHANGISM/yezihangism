@@ -56,7 +56,7 @@
                 <ul class="ismblog-ul-left">
                     <li><a href="{% url 'blogs' %}"><embed src="{% static 'images/logo.svg' %}" style="width:30px;height:20px;color:inherit;" />YEZIHANG<span style="font-family: 'Shadows Into Light', cursive;color:#148755;">ISM</span></a></li>
                     {% if user.is_staff %}
-                        <li><a href="{% url 'index' %}">管理</a></li>
+{#                        <li><a href="{% url 'index' %}">管理</a></li>#}
                         <li><a href="{% url 'messages' %}">留言列表</a></li>
                     {% endif %}
                     <li><a href="{% url 'topic' %}">专题</a></li>

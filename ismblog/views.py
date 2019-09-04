@@ -13,27 +13,10 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, Invali
 from django.http import Http404
 
 # Create your views here.
-def index(request):
-
-	blog_nums = Blog.objects.all().count()
-	user_nums = User.objects.all().count()
-	visits_nums = request.session.get("visits_nums", 0)
-	request.session["visits_nums"] = visits_nums + 1
-
-	return render(
-		request,
-		'index.html',
-		context={
-			'blog_nums':blog_nums, 
-			'user_nums':user_nums,
-			'visits_nums':visits_nums
-			}
-	)
-
 
 class BlogListView(generic.ListView):
 	model = Blog
-	paginate_by = 3
+	paginate_by = 10
 
 	def get_context_data(self, **kwargs):
 		context = super(BlogListView, self).get_context_data(**kwargs)
@@ -79,12 +62,13 @@ class BlogDetailView(generic.DetailView):
 		blog_list = BlogListView()
 		queryset = blog_list.get_queryset()
 		self.current_id = context["blog"].id
+		self.current_topic = context["blog"].topic
 		self.first_id = Blog.objects.all().order_by("id").first().id
 		self.last_id = Blog.objects.all().order_by("id").last().id
 		if self.has_previous():
-			context["previous"] = Blog.objects.filter(id__lt=self.current_id).order_by("id").last()
+			context["previous"] = Blog.objects.filter(id__lt=self.current_id).filter(topic__exact=self.current_topic).order_by("id").last()
 		if self.has_next():
-			context["next"] = Blog.objects.filter(id__gt=self.current_id).order_by("id").first()
+			context["next"] = Blog.objects.filter(id__gt=self.current_id).filter(topic__exact=self.current_topic).order_by("id").first()
 
 		form = CreateCommentModelForm(self.request.POST)
 		if form.is_valid():

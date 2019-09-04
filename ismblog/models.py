@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
+import datetime
 
 # Create your models here.
 class Tag(models.Model):
@@ -38,6 +39,7 @@ class Blog(models.Model):
     title = models.CharField(max_length=200)
     content = RichTextUploadingField(config_name="content_config")
     publish_date = models.DateTimeField(auto_now=True)
+    init_date = models.DateTimeField(auto_now=False, default=datetime.datetime.now())
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     # summary = models.TextField(max_length=1000)
     tags = models.ManyToManyField(Tag)
@@ -46,15 +48,13 @@ class Blog(models.Model):
     pageviews = models.PositiveIntegerField(default=0)
 
     class Meta:
-        ordering = ["-publish_date"]
-        # order_with_respect_to = "publish_date"
+        ordering = ["-init_date"]
 
     def __str__(self):
         return self.title
 
     def display_tag(self):
         return ", ".join([tag.name for tag in self.tags.all()])
-        # return self.tags.all()
 
     def get_absolute_url(self):
         return reverse('blog-detail', args=[str(self.id)])
