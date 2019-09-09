@@ -4,12 +4,6 @@
     <title>{{ blog.title }}</title>
 {% endblock %}
 
-
-<script>
-
-</script>
-
-
 {% block content %}
     <h1>
         <strong>{{ blog.title }}</strong>
@@ -50,12 +44,12 @@
     <hr />
     <div style="font-weight: bold">
         {% if previous %}
-            <a href="{% url 'blog-detail' previous.id %}"><i class="fa fa-angle-left"></i> {{ previous }}</a>
+            <a href="{% url 'blog-detail' previous.id %}"><i class="fa fa-angle-left"></i> {{ previous.title }}</a>
         {% else %}
             <span>没有了</span>
         {% endif %}
         {% if next %}
-            <a href="{% url 'blog-detail' next.id %}" style="float: right;">{{ next }} <i class="fa fa-angle-right"></i></a>
+            <a href="{% url 'blog-detail' next.id %}" style="float: right;">{{ next.title }} <i class="fa fa-angle-right"></i></a>
         {% else %}
             <span style="float: right;">没有了</span>
         {% endif %}

@@ -155,8 +155,8 @@ CKEDITOR_CONFIGS = {
 
         ],
         'toolbar': 'Full',
-        'height': 291,
-        'width': 'auto',
+        'height': 491,
+        'width': 1000,
         'filebrowserWindowWidth': 940,
         'filebrowserWindowHeight': 725,
         # 添加的插件
