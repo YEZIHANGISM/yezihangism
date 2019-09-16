@@ -20,12 +20,10 @@ class CommentAdmin(admin.ModelAdmin):
 class TagAdmin(admin.ModelAdmin):
     pass
 
-class TopicInline(admin.TabularInline):
-    model = Blog
 
 @admin.register(Topic)
 class TopicAdmin(admin.ModelAdmin):
-    inlines = [TopicInline]
+    pass
 
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
