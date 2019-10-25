@@ -59,8 +59,7 @@ class BlogDetailView(generic.DetailView):
 
 	def get_context_data(self, **kwargs):
 		context = super(BlogDetailView, self).get_context_data(**kwargs)
-		blog_list = BlogListView()
-		queryset = blog_list.get_queryset()
+		queryset = Blog.objects.order_by("-pageviews")[:5]
 		self.current_id = context["blog"].id
 		self.current_topic = context["blog"].topic
 		self.first_id = Blog.objects.all().order_by("id").first().id
