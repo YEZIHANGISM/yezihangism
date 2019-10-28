@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
     <link rel="shortcut icon" href="{% static 'images/logo_head.svg' %}">
-    <link href='http://fonts.font.im/css?family=Lato|Shadows+Into+Light' rel='stylesheet' type='text/css'>
-    <link href="https://fonts.font.im/css?family=Bitter" rel="stylesheet">
+    <link href='http://fonts.font.im/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.font.im/css?family=Noto+Sans" rel="stylesheet">
 {#    <link rel="stylesheet" href="{% static 'ckeditor/ckeditor/default.css' %}">#}
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
 
@@ -21,53 +21,34 @@
     {% block extrahead %}{% endblock %}
 
     <script>
-        $(function () {
-            $(window).scroll(function (event) {
-                var $height = $(document).scrollTop();
-                if ($height > 150) {
-                    $(".ismblog-navbar").css({
-                        position: "fixed",
-                        top: 0,
-                    });
-                    $(".header-hole").show();
-                }
-                else {
-                    $(".ismblog-navbar").css({
-                        position: "static",
-                    });
-                    $(".header-hole").hide();
-                }
-            })
-
-        })
+        
     </script>
 
 </head>
 <body>
-    <div class="ismblog-header">
-        <span>YEZIHANGISM</span>
-    </div>
-    <div class="header-hole" style="display: none; height: 80px;" ></div>
-
     <div class="ismblog-navbar" role="navigation">
         <div class="container">
             <nav>
                 <ul class="ismblog-ul-left">
-                    <li><a href="{% url 'blogs' %}"><embed src="{% static 'images/logo.svg' %}" style="width:30px;height:20px;color:inherit;" />YEZIHANG<span style="font-family: 'Shadows Into Light', cursive;color:#148755;">ISM</span></a></li>
+                    <li><label><embed src="{% static 'images/logo.svg' %}" style="width:30px;height:20px;color:inherit;" />YEZIHANG<span style="font-family: 'Shadows Into Light', cursive;color:#148755;">ISM</span></label></li>
+                    <li><a href=""><button>随手记</button></a></li>
                     {% if user.is_staff %}
-{#                        <li><a href="{% url 'index' %}">管理</a></li>#}
-                        <li><a href="{% url 'messages' %}">留言列表</a></li>
+                        <li><a href="{% url 'messages' %}"><button>留言列表</button></a></li>
                     {% endif %}
-                    <li><a href="{% url 'topic' %}">专题</a></li>
+                    <li><a href="{% url 'topic' %}"><button>专题</button></a></li>
+                    <li>
+                        <input type="search" class="form-control" placeholder="搜索">
+                        <!-- <button type="submit" class="btn btn-default" id="search">搜索</button> -->
+                    </li>
                 </ul>
                 <ul class="ismblog-ul-right">
                     {% if user.is_authenticated %}
-                        <li><a href="{% url 'blog-create' %}">写博客</a></li>
-                        <li><a href="{% url 'user-detail' user.id %}">{{ user.get_username }}</a></li>
-                        <li><a href="{% url 'logout' %}?next=/">注销</a></li>
+                        <li><a href="{% url 'blog-create' %}"><button>写博客</button></a></li>
+                        <li><a href="{% url 'user-detail' user.id %}"><button>{{ user.get_username }}</button></a></li>
+                        <li><a href="{% url 'logout' %}?next=/"><button>注销</button></a></li>
                     {% else %}
-                        <li><a href="{% url 'leavemsg' %}">给我留言</a></li>
-                        <li><a href="{% url 'login' %}?next={% if request.path == '/accounts/login/' %}/{% else %}{{request.path}}{% endif %}">登录</a></li>
+                        <li><a href="{% url 'leavemsg' %}"><button>给我留言</button></a></li>
+                        <li><a href="{% url 'login' %}?next={% if request.path == '/accounts/login/' %}/{% else %}{{request.path}}{% endif %}"><button>登录</button></a></li>
                     {% endif %}
                 </ul>
             </nav>
@@ -77,11 +58,11 @@
     <div class="ismblog-content">
         <div class="container">
           <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-9">
                   {% block content %}{% endblock %}
                   {% block pagination %}{% endblock %}
               </div>
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <div class="sidebar-nav">
                   {% block sidebar %}{% endblock %}
                 </div>

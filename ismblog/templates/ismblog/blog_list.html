@@ -13,8 +13,8 @@
     {% else %}
         {% for blog in blog_list %}
             <div class="blog-list">
-                <h2><a style="width: 90%;" href="{% url 'blog-detail' blog.id %}">{{ blog.title }}</a></h2>
-                <p><a href="{% url 'topic' %}"><button type="submit" class="label" style="border-radius: 290486px; font-weight: normal; background-color: #148755;">{{ blog.topic }}</button></a></p>
+                <h3><a style="width: 90%;" href="{% url 'blog-detail' blog.id %}">{{ blog.title }}</a></h3>
+                <!-- <p><a href="{% url 'topic' %}"><button type="submit" class="label" style="border-radius: 290486px; font-weight: normal; background-color: #148755;">{{ blog.topic }}</button></a></p> -->
                 <p>{{ blog.content|safe|striptags|truncatechars:100 }}...</p>
                 <label><i class="fa fa-tags"></i>：{{ blog.display_tag }}</label>
                 <p style="color: gray;">{{ blog.publish_date }}&nbsp;&nbsp;&nbsp;阅读量：{{ blog.pageviews }}</p>
@@ -25,14 +25,14 @@
 {% endblock %}
 
 {% block sidebar %}
-    <div class="blog_search" style="margin-top: 20px;">
+    <!-- <div class="blog_search" style="margin-top: 20px;">
         <form class="form-inline" role="search" action="{% url 'search' %}" method="get">
             {% csrf_token %}
             <input type="search" class="form-control" placeholder="Search title" name="search">
             <button type="submit" class="btn btn-default" id="search">搜索</button>
         </form>
     </div>
-    <hr />
+    <hr /> -->
     <div class="blog-tags">
         {% for tag in tags %}
             <a href="{% url 'filter' tag.id %}"><button type="submit" class="label" style="border-radius: 290486px; font-weight: normal; background-color: #148755;">{{ tag }}</button></a>
