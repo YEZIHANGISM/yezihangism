@@ -4,6 +4,15 @@
     font-family: 'Noto Sans', sans-serif;
 }
 
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
 h1,h2,h3,h4,h5,h6 {
     margin-top: 0;
 }
@@ -20,7 +29,6 @@ li {
 }
 
 a {
-    /*color: inherit;*/
     color: #148755;
 }
 
@@ -42,6 +50,7 @@ p {
 
 /* navbar */
 .ismblog-navbar {
+    flex: 0 0 auto;
     position: fixed;
     top: 0;
     width: 100%;
@@ -75,10 +84,18 @@ p {
     color: whitesmoke;
 }
 
-
+#search {
+    display: none;
+}
 
 .ismblog-content {
     margin-top: 70px;
+    flex: 1 0 auto;
+}
+
+.content-list {
+    border-right: 1px lightgrey solid;
+    padding: 0 20px;
 }
 
 #btn-color-inherit {
@@ -95,12 +112,11 @@ p {
 }
 
 footer {
+    flex: 0 0 auto;
+    margin-top: 50px;
     background-color: #148755;
     color: whitesmoke;
     padding: 50px 0;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
 }
 
 #ismblog_footer_div a{

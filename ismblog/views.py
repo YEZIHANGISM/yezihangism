@@ -16,7 +16,7 @@ from django.http import Http404
 
 class BlogListView(generic.ListView):
 	model = Blog
-	paginate_by = 10
+	paginate_by = 4
 
 	def get_context_data(self, **kwargs):
 		context = super(BlogListView, self).get_context_data(**kwargs)

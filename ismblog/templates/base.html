@@ -21,7 +21,7 @@
     {% block extrahead %}{% endblock %}
 
     <script>
-        
+       
     </script>
 
 </head>
@@ -31,14 +31,14 @@
             <nav>
                 <ul class="ismblog-ul-left">
                     <li><label><embed src="{% static 'images/logo.svg' %}" style="width:30px;height:20px;color:inherit;" />YEZIHANG<span style="font-family: 'Shadows Into Light', cursive;color:#148755;">ISM</span></label></li>
-                    <li><a href=""><button>随手记</button></a></li>
+                    <li><a href="#"><button>随手记</button></a></li>
                     {% if user.is_staff %}
                         <li><a href="{% url 'messages' %}"><button>留言列表</button></a></li>
                     {% endif %}
                     <li><a href="{% url 'topic' %}"><button>专题</button></a></li>
                     <li>
                         <input type="search" class="form-control" placeholder="搜索">
-                        <!-- <button type="submit" class="btn btn-default" id="search">搜索</button> -->
+                        <button type="submit" class="btn btn-default" id="search">搜索</button>
                     </li>
                 </ul>
                 <ul class="ismblog-ul-right">
@@ -59,8 +59,10 @@
         <div class="container">
           <div class="row">
               <div class="col-md-9">
-                  {% block content %}{% endblock %}
-                  {% block pagination %}{% endblock %}
+                    <div class="content-list">
+                        {% block content %}{% endblock %}
+                        {% block pagination %}{% endblock %}
+                    </div>
               </div>
               <div class="col-md-3">
                 <div class="sidebar-nav">
@@ -71,7 +73,7 @@
         </div>
     </div>
 
-    <footer>
+    <footer id="ismblog_footer">
         <div class="container" id="ismblog_footer_div">
             <div class="row">
                 <div class="col-md-5" style="border-right: lightgrey 1px solid">
