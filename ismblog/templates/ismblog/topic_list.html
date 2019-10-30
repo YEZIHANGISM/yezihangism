@@ -5,11 +5,15 @@
 {% endblock %}
 
 {% block content %}
-    <ul>
+    <div class="topic-list">
         {% for topic in topic_list %}
-            <li><h2><a href="{% url 'topic-blog' topic.id %}">{{ topic }}</a></h2></li>
-            <hr />
+            <div class="topic">
+                <h3><a href="{% url 'topic-blog' topic.id %}">{{ topic }}</a></h3>
+                {% if topic.summary %}
+                    <p>简介：{{ topic.summary }}</p>
+                {% endif %}
+                <p>创建时间：{{ topic.init_date }}</p>
+            </div>
         {% endfor %}
-
-    </ul>
+    </div>
 {% endblock %}

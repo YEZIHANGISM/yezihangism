@@ -98,6 +98,13 @@ p {
     padding: 0 20px;
 }
 
+.topic-list div {
+    background-color: whitesmoke;
+    margin: 20px 0;
+    padding: 10px;
+    box-shadow: 0 1px 5px lightgrey;
+}
+
 #btn-color-inherit {
     background-color: #148755;
     color: whitesmoke;

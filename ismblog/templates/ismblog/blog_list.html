@@ -5,22 +5,22 @@
 {% endblock %}
 
 {% block content %}
-    <!-- <h1>Blog list</h1> -->
     {% if empty %}
         <div>
             <p>{{ empty }}</p>
         </div>
     {% else %}
+    <div class="content-list">
         {% for blog in blog_list %}
             <div class="blog-list">
                 <h3><a style="width: 90%;" href="{% url 'blog-detail' blog.id %}">{{ blog.title }}</a></h3>
-                <!-- <p><a href="{% url 'topic' %}"><button type="submit" class="label" style="border-radius: 290486px; font-weight: normal; background-color: #148755;">{{ blog.topic }}</button></a></p> -->
                 <p>{{ blog.content|safe|striptags|truncatechars:100 }}...</p>
                 <label><i class="fa fa-tags"></i>：{{ blog.display_tag }}</label>
                 <p style="color: gray;">{{ blog.publish_date }}&nbsp;&nbsp;&nbsp;阅读量：{{ blog.pageviews }}</p>
                 <hr />
             </div>
         {% endfor %}
+    </div>
     {% endif %}
 {% endblock %}
 

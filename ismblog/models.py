@@ -17,6 +17,8 @@ class Tag(models.Model):
 class Topic(models.Model):
 
     title = models.CharField(max_length=200)
+    summary = models.TextField(max_length=1000, null=True)
+    init_date = models.DateTimeField(auto_now=False, default=datetime.datetime.now())
 
     def __str__(self):
         return self.title
