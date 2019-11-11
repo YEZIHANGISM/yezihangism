@@ -88,6 +88,8 @@ p {
     display: none;
 }
 
+
+/* content */
 .ismblog-content {
     margin-top: 70px;
     flex: 1 0 auto;
@@ -118,6 +120,18 @@ p {
     margin: 0;
 }
 
+.ismblog_notes div {
+    background-color: whitesmoke;
+    margin: 20px 0;
+    padding: 10px;
+    box-shadow: 0 1px 5px lightgrey;
+}
+
+.ismblog_notes div:hover{
+    box-shadow: 0 1px 8px lightgrey;
+}
+
+/* footer */
 footer {
     flex: 0 0 auto;
     margin-top: 50px;
@@ -127,9 +141,14 @@ footer {
 }
 
 #ismblog_footer_div a{
-    color: white;
+    color: whitesmoke;
 }
 
-#ismblog_footer_div a:hover{
+footer a:hover{
     color: lightgrey;
+}
+
+footer li{
+    padding-top: 0;
+    color: whitesmoke;
 }

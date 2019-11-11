@@ -2,7 +2,8 @@ from django.urls import path
 from ismblog import views
 
 urlpatterns = [
-	path("", views.BlogListView.as_view(), name='blogs'),
+    path("", views.HomeListView.as_view(), name="home"),
+	path("blogs/", views.BlogListView.as_view(), name='blogs'),
     # path("management/", views.index, name="index"),
     
     path("users/", views.UserListView.as_view(), name="users"),
@@ -25,5 +26,7 @@ urlpatterns = [
     path("topic/<int:pk>", views.topic_blog_list, name="topic-blog"),
 
     path("leavemsg/", views.LeavemsgView.as_view(), name='leavemsg'),
-    path("msglist/", views.MsgListView.as_view(), name="messages")
+    path("msglist/", views.MsgListView.as_view(), name="messages"),
+
+    path("notes/", views.NotesView.as_view(), name="notes")
 ]

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>YEZIHANGISM</title>
+{% endblock %}
+
+{% block content %}
+    <div class="latest-note">
+        <h3>最新动态</h3>
+        {% for note in notes_list %}
+            {{ note.content|safe }}
+            <br>
+            <p style="text-align: right;"><small>{{ note.init_date }}</small></p>
+        {% endfor %}
+    </div>
+    <hr>
+    <div class="latest-blog">
+        <h3>最新文章</h3>
+        {% for blog in latest_blogs %}
+            <a href="{% url 'blog-detail' blog.id %}">{{blog.title}}</a> - {{blog.publish_date}}
+            <br>
+        {% endfor %}
+    </div>
+    <hr>
+    <div class="hotest-blog">
+        <h3>热门文章</h3>
+        {% for blog in hotest_blogs %}
+            <a href="{% url 'blog-detail' blog.id %}">{{blog.title}}</a> - {{blog.publish_date}}
+            <br>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    <p>文章：{{sum_blogs}}</p>
+    <p>留言：{{sum_messages}}</p>
+    <p>短笺：{{sum_notes}}</p>
+{% endblock %}

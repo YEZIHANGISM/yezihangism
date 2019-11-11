@@ -161,6 +161,25 @@ CKEDITOR_CONFIGS = {
         'filebrowserWindowHeight': 725,
         # 添加的插件
         'extraPlugins': 'codesnippet',
+    },
+
+    'short-config':{
+        'skin': 'moono-lisa',
+        'toolbar_Basic': [
+            ['Source', '-', 'Bold', 'Italic']
+        ],
+        'toolbar_Full': [
+            ['Bold', 'Underline', 'Strike', 'SpellChecker'],
+            ['Link', 'Unlink'],
+            ['Smiley'],
+        ],
+        'toolbar': 'Full',
+        'height': 150,
+        'width': 700,
+        'filebrowserWindowWidth': 940,
+        'filebrowserWindowHeight': 725,
+        # 添加的插件
+        'extraPlugins': 'codesnippet',
     }
 }
 

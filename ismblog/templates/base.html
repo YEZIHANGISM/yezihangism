@@ -37,15 +37,18 @@
         <div class="container">
             <nav>
                 <ul class="ismblog-ul-left">
-                    <li><label><embed src="{% static 'images/logo.svg' %}" style="width:30px;height:20px;color:inherit;" />YEZIHANG<span style="font-family: 'Shadows Into Light', cursive;color:#148755;">ISM</span></label></li>
-                    <li><a href="#"><button>随手记</button></a></li>
+                    <li><a href="{% url 'home' %}"><embed src="{% static 'images/logo.svg' %}" style="width:30px;height:20px;color:inherit;" />YEZIHANGISM</a></li>
+                    <li><a href="{% url 'notes' %}"><button>随手记</button></a></li>
                     {% if user.is_staff %}
                         <li><a href="{% url 'messages' %}"><button>留言列表</button></a></li>
                     {% endif %}
                     <li><a href="{% url 'topic' %}"><button>专题</button></a></li>
                     <li>
-                        <input type="search" class="form-control" placeholder="搜索">
-                        <button type="submit" class="btn btn-default" id="search">搜索</button>
+                        <form class="form-inline" role="search" action="{% url 'search' %}" method="get">
+                            {% csrf_token %}
+                            <input type="search" class="form-control" placeholder="搜索文章" name="search">
+                            <button type="submit" class="btn btn-default" id="search">搜索</button>
+                        </form>
                     </li>
                 </ul>
                 <ul class="ismblog-ul-right">
@@ -55,7 +58,8 @@
                         <li><a href="{% url 'logout' %}?next=/"><button>注销</button></a></li>
                     {% else %}
                         <li><a href="{% url 'leavemsg' %}"><button>给我留言</button></a></li>
-                        <li><a href="{% url 'login' %}?next={% if request.path == '/accounts/login/' %}/{% else %}{{request.path}}{% endif %}"><button>登录</button></a></li>
+                        <!-- 好麻烦，不想搞了 -->
+                        <!-- <li><a href="{% url 'login' %}?next={% if request.path == '/accounts/login/' %}/{% else %}{{request.path}}{% endif %}"><button>登录</button></a></li> -->
                     {% endif %}
                 </ul>
             </nav>
@@ -84,10 +88,10 @@
                 <div class="col-md-5" style="border-right: lightgrey 1px solid">
                     <h3>联系我</h3>
                     <ul class="fa-ul">
-                        <li><i class="fa-li fa fa-wechat" id="wechat"></i>IAMYEZIHANG</li>
-                        <li><i class="fa-li fa fa-phone-square" id="phone"></i>13824848942</li>
-                        <li><i class="fa-li fa fa-envelope" id="mail"></i>yezihangism@gmail.com</li>
-                        <li><i class="fa-li fa fa-qq" id="qq"></i>954013871</li>
+                        <li><i class="fa-li fa fa-wechat" id="wechat"></i><span>YEZIHANGISM</span></li>
+                        <li><i class="fa-li fa fa-phone-square" id="phone"></i><span>13824848942</span></li>
+                        <li><i class="fa-li fa fa-envelope" id="mail"></i><span>yezihangism@gmail.com</span></li>
+                        <li><i class="fa-li fa fa-qq" id="qq"></i><span>954013871</span></li>
                         <li><i class="fa-li fa fa-github"></i><a href="https://github.com/YEZIHANGISM">YEZIHANGISM</a></li>
                         <li><i class="fa-li fa fa-stack-overflow"></i><a href="https://stackoverflow.com/users/10508291/yezihang">yezihang</a></li>
                     </ul>

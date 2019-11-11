@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>随手记</title>
+{% endblock %}
+
+{% block content %}
+    <div class="ismblog_notes">
+        {% for note in notes_list %}
+            <div>
+                {{note.content|safe}}
+                <br>
+                {{note.init_date}}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

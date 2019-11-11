@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
+from ckeditor.fields import RichTextField
 import datetime
 
 # Create your models here.
@@ -12,6 +13,18 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+
+class Notes(models.Model):
+
+    # user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    content = RichTextField(max_length=1000, config_name='short-config')
+    init_date = models.DateTimeField(auto_now=False, default=datetime.datetime.now())
+
+    class Meta:
+        ordering = ["-init_date"]
+
+    def __str__(self):
+        return self.content[:10]
 
 
 class Topic(models.Model):
@@ -71,7 +84,7 @@ class Comment(models.Model):
 
     blog = models.ForeignKey('Blog', on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    content = RichTextUploadingField(max_length=1000, config_name="content_config") # 可以考虑给评论新增配置
+    content = RichTextUploadingField(max_length=1000, config_name="short-config") # 可以考虑给评论新增配置
     publish_date = models.DateTimeField(auto_now=True)
 
     class Meta:
@@ -83,7 +96,7 @@ class Comment(models.Model):
 
 class Message(models.Model):
 
-    content = RichTextUploadingField(max_length=1000, config_name='content_config')
+    content = RichTextUploadingField(max_length=1000, config_name='short-config')
     date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
