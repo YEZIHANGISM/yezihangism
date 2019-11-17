@@ -11,6 +11,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, InvalidPage
 from django.http import Http404
+from django_redis import get_redis_connection
+from django.http import HttpResponse
 
 # Create your views here.
 
