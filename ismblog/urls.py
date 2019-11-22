@@ -28,5 +28,7 @@ urlpatterns = [
     path("leavemsg/", views.LeavemsgView.as_view(), name='leavemsg'),
     path("msglist/", views.MsgListView.as_view(), name="messages"),
 
-    path("notes/", views.NotesView.as_view(), name="notes")
+    path("notes/", views.NotesView.as_view(), name="notes"),
+
+    path("test/", views.test, name='test')
 ]
