@@ -30,5 +30,4 @@ urlpatterns = [
 
     path("notes/", views.NotesView.as_view(), name="notes"),
 
-    path("test/", views.test, name='test')
 ]
