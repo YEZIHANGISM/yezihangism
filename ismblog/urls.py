@@ -31,4 +31,5 @@ urlpatterns = [
     path("notes/", views.NotesView.as_view(), name="notes"),
 
     path("star/<int:pk>", views.star_incr, name="star"),
+    path("unstar/<int:pk>", views.unstar_decr, name="unstar")
 ]

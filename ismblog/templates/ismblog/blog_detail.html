@@ -10,12 +10,22 @@
             $("#star").click(function() {
                 $.getJSON("{% url 'star' blog.id %}", function(ret) {
                     if (ret.code == 200) {
-                    $("#star").html('<i class="fa fa-star"></i>&nbsp;Star')
-                    $("#star").css({"background-color": "lightgrey"})
+                    $("#star").html('<i class="fa fa-star"></i>&nbsp;Unstar')
+                    $("#star").attr("id", "unstar")
                     } else {
                         alert(ret.hint)
                     }
                     
+                })
+            }),
+            $("#unstar").click(function() {
+                $.getJSON("{% url 'unstar' blog.id %}", function(ret) {
+                    if (ret.code == 200) {
+                        $("#unstar").html('<i class="fa fa-star-o"></i>&nbsp;star')
+                        $("#unstar").attr("id", "star")
+                        } else {
+                            alert(ret.hint)
+                        }
                 })
             })
         })

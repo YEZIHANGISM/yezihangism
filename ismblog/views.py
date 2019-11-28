@@ -281,3 +281,13 @@ def star_incr(request, pk):
     except Exception:
         data = {"code": 404, "hint": "failed"}
     return JsonResponse(data)
+
+def unstar_decr(request, pk):
+    try:
+        blog = Blog.objects.get(id=pk)
+        blog.star -= 1
+        blog.save()
+        data = {"code": 200, "hint": "done"}
+    except Exception:
+        data = {"code": 404, "hint": "failed"}
+    return JsonResponse(data)
