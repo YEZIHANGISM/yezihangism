@@ -4,14 +4,39 @@
     <title>{{ blog.title }}</title>
 {% endblock %}
 
+{% block extrahead %}
+    <script>
+        $(document).ready(function() {
+            $("#star").click(function() {
+                $.getJSON("{% url 'star' blog.id %}", function(ret) {
+                    if (ret.code == 200) {
+                    $("#star").html('<i class="fa fa-star"></i>&nbsp;Star')
+                    $("#star").css({"background-color": "lightgrey"})
+                    } else {
+                        alert(ret.hint)
+                    }
+                    
+                })
+            })
+        })
+    </script>
+{% endblock %}
+
 {% block content %}
     <h1>
         <strong>{{ blog.title }}</strong>
     </h1>
         <!-- <br /> -->
         <p><i class="fa fa-user-circle"></i>&nbsp&nbsp{{ blog.user.username }}</p>
-        <p><i class="fa fa-tags"></i>&nbsp&nbsp{{ blog.display_tag }}</p>
-    
+        <div class="between">
+            <div><p><i class="fa fa-tags"></i>&nbsp&nbsp{{ blog.display_tag }}</p></div>
+            <div>
+                <a class="btn btn-default" id="star">
+                    <i class="fa fa-star-o"></i>
+                    Star
+                </a>
+            </div>
+        </div>
     <hr />
     {{ blog.content|safe }}
     <div>

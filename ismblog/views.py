@@ -10,7 +10,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, InvalidPage
-from django.http import Http404
+from django.http import Http404, JsonResponse
 
 # Create your views here.
 
@@ -272,3 +272,12 @@ def filter_by_tag(request, pk):
         }
     )
 
+def star_incr(request, pk):
+    try:
+        blog = Blog.objects.get(id=pk)
+        blog.star += 1
+        blog.save()
+        data = {"code": 200, "hint": "done"}
+    except Exception:
+        data = {"code": 404, "hint": "failed"}
+    return JsonResponse(data)

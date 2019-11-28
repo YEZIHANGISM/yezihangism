@@ -15,8 +15,11 @@
             <div class="blog-list">
                 <h3><a style="width: 90%;" href="{% url 'blog-detail' blog.id %}">{{ blog.title }}</a></h3>
                 <p>{{ blog.content|safe|striptags|truncatechars:100 }}...</p>
-                <label><i class="fa fa-tags"></i>：{{ blog.display_tag }}</label>
-                <p style="color: gray;">{{ blog.publish_date }}&nbsp;&nbsp;&nbsp;阅读量：{{ blog.pageviews }}</p>
+                <p><i class="fa fa-tags"></i>：{{ blog.display_tag }}</p>
+                <div class="between">
+                    <p><i class="fa fa-star"></i>: {{ blog.star }}&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-bookmark"></i>: {{ blog.pageviews }}</p>
+                    <p style="color: gray;">{{ blog.publish_date }}</p>
+                </div>
                 <hr />
             </div>
         {% endfor %}
