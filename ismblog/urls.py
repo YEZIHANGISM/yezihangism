@@ -1,8 +1,10 @@
 from django.urls import path
 from ismblog import views
+from django.views.decorators.cache import cache_page
 
 urlpatterns = [
-    path("", views.HomeListView.as_view(), name="home"),
+    path("", cache_page(60)(views.HomeListView.as_view()), name="home"),
+    # path("", views.HomeListView.as_view(), name="home"),
 	path("blogs/", views.BlogListView.as_view(), name='blogs'),
     # path("management/", views.index, name="index"),
     

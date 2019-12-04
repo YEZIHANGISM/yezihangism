@@ -11,8 +11,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, InvalidPage
 from django.http import Http404, JsonResponse
+from django.views.decorators.cache import cache_page
 
 # Create your views here.
+
 
 class HomeListView(generic.ListView):
     model = Notes
