@@ -28,14 +28,6 @@
 {% endblock %}
 
 {% block sidebar %}
-    <!-- <div class="blog_search" style="margin-top: 20px;">
-        <form class="form-inline" role="search" action="{% url 'search' %}" method="get">
-            {% csrf_token %}
-            <input type="search" class="form-control" placeholder="Search title" name="search">
-            <button type="submit" class="btn btn-default" id="search">搜索</button>
-        </form>
-    </div>
-    <hr /> -->
     <div class="blog-tags">
         {% for tag in tags %}
             <a href="{% url 'filter' tag.id %}"><button type="submit" class="label" style="border-radius: 290486px; font-weight: normal; background-color: #148755;">{{ tag }}</button></a>
@@ -45,18 +37,25 @@
 
 {% block pagination %}
     {% if is_paginated %}
-        <div class="pagination">
-            <span class="page-links">
-              {% if page_obj.has_previous %}
-                  <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
-              {% endif %}
-              <span class="page-current">
-                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-              </span>
-              {% if page_obj.has_next %}
-                  <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
-              {% endif %}
-            </span>
-        </div>
+        <nav aria-label="Page navigation">
+            <ul class="pager">
+                {% if page_obj.has_previous %}
+                <li class="{% if page_obj.number == 1 %}previous disabled{% else %}previous{% endif %}">
+                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">
+                        <span aria-hidden="true">&larr;</span>
+                        上一页
+                    </a>
+                </li>
+                {% endif %}
+                {% if page_obj.has_next %}
+                <li class="{% if page_obj.number == page_obj.paginator.num_pages %}next disabled{% else %}next{% endif %}">
+                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">
+                        下一页
+                        <span aria-hidden="true">&rarr;</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
     {% endif %}
 {% endblock %}

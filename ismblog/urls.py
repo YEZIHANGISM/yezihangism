@@ -1,11 +1,11 @@
-from django.urls import path
+from django.urls import path, re_path
 from ismblog import views
 from django.views.decorators.cache import cache_page
 
 urlpatterns = [
     path("", cache_page(60)(views.HomeListView.as_view()), name="home"),
     # path("", views.HomeListView.as_view(), name="home"),
-	path("blogs/", views.BlogListView.as_view(), name='blogs'),
+	path('blogs/', views.BlogListView.as_view(), name='blogs'),
     # path("management/", views.index, name="index"),
     
     path("users/", views.UserListView.as_view(), name="users"),
@@ -25,7 +25,7 @@ urlpatterns = [
     path("filter/<int:pk>", views.filter_by_tag, name="filter"),
 
     path("topic/", views.TopicListView.as_view(), name="topic"),
-    path("topic/<int:pk>", views.topic_blog_list, name="topic-blog"),
+    path("topic/<int:pk>", views.TopicBlogsView.as_view(), name="topic-blog"),
 
     path("leavemsg/", views.LeavemsgView.as_view(), name='leavemsg'),
     path("msglist/", views.MsgListView.as_view(), name="messages"),
@@ -33,5 +33,5 @@ urlpatterns = [
     path("notes/", views.NotesView.as_view(), name="notes"),
 
     path("star/<int:pk>", views.star_incr, name="star"),
-    path("unstar/<int:pk>", views.unstar_decr, name="unstar")
+    path("unstar/<int:pk>", views.unstar_decr, name="unstar"),
 ]

@@ -12,6 +12,7 @@ from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, InvalidPage
 from django.http import Http404, JsonResponse
 from django.views.decorators.cache import cache_page
+from django.db import connection
 
 # Create your views here.
 
@@ -34,7 +35,7 @@ class HomeListView(generic.ListView):
 
 class BlogListView(generic.ListView):
     model = Blog
-    paginate_by = 4
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         context = super(BlogListView, self).get_context_data(**kwargs)
@@ -137,20 +138,26 @@ class BlogUpdate(LoginRequiredMixin, UpdateView):
 
 class TopicListView(generic.ListView):
     model = Topic
+    paginate_by = 2
 
 class MsgListView(generic.ListView):
     model = Message
 
+class TopicBlogsView(generic.ListView):
+    paginate_by = 5
+    template_name = "ismblog/blog_list.html"
 
-def topic_blog_list(request, pk):
-    blog = Blog.objects.filter(topic=pk)
-    return render(
-        request,
-        template_name="ismblog/blog_list.html",
-        context={
-            "blog_list": blog,
-        }
-    )
+    def get_queryset(self):
+        pk = self.kwargs.get("pk")
+        blog_list = Blog.objects.filter(topic_id=pk)
+        return blog_list
+    
+    def get_context_data(self, **kwargs):
+        context = super(TopicBlogsView, self).get_context_data(**kwargs)
+        context["tags"] = Tag.objects.all()
+        print(connection.queries)
+        return context
+
 
 # class CommentCreate(LoginRequiredMixin, CreateView):
 #     model = Comment
