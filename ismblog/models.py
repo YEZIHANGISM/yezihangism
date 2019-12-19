@@ -33,6 +33,9 @@ class Topic(models.Model):
     summary = models.TextField(max_length=1000, null=True)
     init_date = models.DateTimeField(auto_now=False, default=datetime.datetime.now())
 
+    class Meta:
+        ordering = ["-init_date"]
+
     def __str__(self):
         return self.title
 

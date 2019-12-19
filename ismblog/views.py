@@ -138,7 +138,7 @@ class BlogUpdate(LoginRequiredMixin, UpdateView):
 
 class TopicListView(generic.ListView):
     model = Topic
-    paginate_by = 2
+    paginate_by = 5
 
 class MsgListView(generic.ListView):
     model = Message
@@ -149,7 +149,7 @@ class TopicBlogsView(generic.ListView):
 
     def get_queryset(self):
         pk = self.kwargs.get("pk")
-        blog_list = Blog.objects.filter(topic_id=pk)
+        blog_list = Blog.objects.filter(topic_id=pk).order_by("-init_date")
         return blog_list
     
     def get_context_data(self, **kwargs):
