@@ -6,7 +6,7 @@
 
 {% block content %}
     {% if form.errors %}
-        <p>Your username and password didn't match. Please try again.</p>
+        <p>用户名和密码不匹配，请重试</p>
     {% endif %}
 
     {% if next %}
@@ -14,7 +14,7 @@
             <p>Your account doesn't have access to this page. To proceed,
                 please login with an account that has access.</p>
         {% else %}
-            <p>Please login to see this page.</p>
+            <p>请登录</p>
         {% endif %}
     {% endif %}
     
@@ -33,4 +33,8 @@
         <input type="submit" value="login" />
         <input type="hidden" name="next" value="{{ next }}" />
     </form>
+
+    <a href="{% url 'register' %}">注册</a>
+    <!-- <a href="{% url 'password_reset' %}">忘记密码？</a> -->
+    <a href="#">忘记密码？</a>
 {% endblock %}

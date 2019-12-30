@@ -17,9 +17,8 @@ urlpatterns = [
     path("blog/<int:pk>/update", views.BlogUpdate.as_view(), name="blog-update"),
 
     path("createblog/", views.create_blog, name="blog-create"),
-    path("comment/<int:pk>/create", views.create_comment, name="comment-create"),
 
-    # path("register/", views.create_user, name="register"),
+    path("register/", views.create_user, name="register"),
 
     path("search/", views.search, name="search"),
     path("filter/<int:pk>", views.filter_by_tag, name="filter"),

@@ -83,18 +83,18 @@ class Blog(models.Model):
 
 
 
-class Comment(models.Model):
+# class Comment(models.Model):
 
-    blog = models.ForeignKey('Blog', on_delete=models.SET_NULL, null=True)
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    content = RichTextUploadingField(max_length=1000, config_name="short-config") # 可以考虑给评论新增配置
-    publish_date = models.DateTimeField(auto_now=True)
+#     blog = models.ForeignKey('Blog', on_delete=models.SET_NULL, null=True)
+#     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+#     content = RichTextUploadingField(max_length=1000, config_name="short-config") # 可以考虑给评论新增配置
+#     publish_date = models.DateTimeField(auto_now=True)
 
-    class Meta:
-        ordering = ["-publish_date"]
+#     class Meta:
+#         ordering = ["-publish_date"]
 
-    def __str__(self):
-        return "comment user: %s"%self.user_name
+#     def __str__(self):
+#         return "comment user: %s"%self.user_name
 
 
 class Message(models.Model):

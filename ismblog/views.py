@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Blog, Comment, Tag, Topic, Message, Notes
+from .models import Blog, Tag, Topic, Message, Notes
 from django.views import generic
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.contrib.auth.decorators import permission_required, login_required
 from django.views.generic.edit import DeleteView, CreateView, UpdateView
 from django.urls import reverse_lazy as _, reverse
-from .forms import CreateCommentModelForm, CreateUserForm, CreateBlogModelForm, LeaveMsgModelForm
+from .forms import CreateUserForm, CreateBlogModelForm, LeaveMsgModelForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
@@ -13,6 +13,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, Invali
 from django.http import Http404, JsonResponse
 from django.views.decorators.cache import cache_page
 from django.db import connection
+from comments.forms import CreateCommentModelForm
 
 # Create your views here.
 
@@ -92,15 +93,17 @@ class BlogDetailView(generic.DetailView):
         if self.has_next():
             context["next"] = Blog.objects.filter(id__gt=self.current_id).filter(topic__exact=self.current_topic).order_by("id").first()
 
-        form = CreateCommentModelForm(self.request.POST)
-        if form.is_valid():
-            form = form.save(commit=False)
-            form.blog = context["blog"].id
-            form.user = self.request.user
-            form.save()
+        # form = CreateCommentModelForm(self.request.POST)
+        # if form.is_valid():
+        #     form = form.save(commit=False)
+        #     form.blog = context["blog"].id
+        #     form.user = self.request.user
+        #     form.save()
 
-            return HttpResponseRedirect(reverse('blog-detail', args=str(context["blog"].id)))
-        context["form"] = form
+        #     return HttpResponseRedirect(reverse('blog-detail', args=str(context["blog"].id)))
+        # else:
+        #     form.add_error(None, "失败！！！")
+        # context["form"] = form
         context["blog_list"]= queryset
 
         return context
@@ -190,28 +193,28 @@ def create_blog(request):
     )    
 
 
-@login_required()
-def create_comment(request, pk):
-    blog_info = get_object_or_404(Blog, pk=pk)
+# @login_required()
+# def create_comment(request, pk):
+#     blog_info = get_object_or_404(Blog, pk=pk)
 
-    if request.method == 'POST':
-        form = CreateCommentModelForm(request.POST)
+#     if request.method == 'POST':
+#         form = CreateCommentModelForm(request.POST)
 
-        if form.is_valid():
-            form = form.save(commit=False)
-            form.blog = blog_info
-            form.user = request.user
-            form.save()
+#         if form.is_valid():
+#             form = form.save(commit=False)
+#             form.blog = blog_info
+#             form.user = request.user
+#             form.save()
 
-            return HttpResponseRedirect(reverse('blog-detail', args=str(blog_info.id)))
-    else:
-        form = CreateCommentModelForm()
+#             return HttpResponseRedirect(reverse('blog-detail', args=str(blog_info.id)))
+#     else:
+#         form = CreateCommentModelForm()
 
-    return render(
-        request,
-        template_name='ismblog/comment_form.html',
-        context={"form":form, "blog":blog_info}
-    )
+#     return render(
+#         request,
+#         template_name='ismblog/comment_form.html',
+#         context={"form":form, "blog":blog_info}
+#     )
 
 class LeavemsgView(generic.CreateView):
 

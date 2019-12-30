@@ -28,6 +28,7 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/ismblog/', permanent=True)),
     path("accounts/", include('django.contrib.auth.urls')),
     path("ckeditor/", include('ckeditor_uploader.urls')),
+    path("comments/", include("comments.urls")),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

@@ -58,25 +58,7 @@
                 <a href="{% url 'blog-delete' blog.id %}"><button class="btn btn-danger">Delete</button></a>
             </div>
         {% endif %}
-{#        <form action="" method="post">#}
-{#            <table>#}
-{#                {{ form.media }}#}
-{#                {{ form.content }}#}
-{#            </table>#}
-{#            <input type="submit" value="Comment" />#}
-{#        </form>#}
-{#        {% if blog.comment_set.all %}#}
-{#            <p><strong>Comment</strong></p>#}
-{#            <ul>#}
-{#                {% for comment in blog.comment_set.all %}#}
-{#                    <li>{{ comment.content|safe }} - <a href="#">{{ comment.user.username }}</a> - {{ comment.publish_date }}</li>#}
-{#                {% endfor %}#}
-{#            </ul>#}
-{#        {% else %}#}
-{#            <p>no comment yet.</p>#}
-{#        {% endif %}#}
     </div>
-{#    <a href="{% url 'comment-create' blog.id %}"><input type="button" value="Comment" /></a>#}
     <!-- <hr /> -->
     <div style="font-weight: bold">
         {% if previous %}
@@ -89,6 +71,31 @@
         {% else %}
             <span style="float: right;">没有了</span>
         {% endif %}
+    </div>
+    <hr>
+
+    <div>
+        <div>
+            <h4>评论列表</h4>
+            <div></div>
+        </div>
+
+        <div>
+            <h4>新的评论</h4>
+            {% if user.is_authenticated %}
+                <div>
+                    <form action="#" method="POST">
+                        {% csrf_token %}
+                        <textarea name="" id="" cols="30" rows="4" placeholder="说点什么"></textarea>
+                        <input type="hidden" name="object_id" value="{{ blog.id }}">
+                        <input type="hidden" name="content_type" value="blog">
+                        <input type="submit" value="提交">
+                    </form>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}?next={% if request.path == '/accounts/login/' %}/{% else %}{{request.path}}{% endif %}">请登录后再评论</a>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}
 
