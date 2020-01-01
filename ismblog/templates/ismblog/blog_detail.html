@@ -4,32 +4,10 @@
     <title>{{ blog.title }}</title>
 {% endblock %}
 
+{% load staticfiles %}
 {% block extrahead %}
-    <script>
-        $(document).ready(function() {
-            $("#star").click(function() {
-                $.getJSON("{% url 'star' blog.id %}", function(ret) {
-                    if (ret.code == 200) {
-                    $("#star").html('<i class="fa fa-star"></i>&nbsp;Unstar')
-                    $("#star").attr("id", "unstar")
-                    } else {
-                        alert(ret.hint)
-                    }
-                    
-                })
-            }),
-            $("#unstar").click(function() {
-                $.getJSON("{% url 'unstar' blog.id %}", function(ret) {
-                    if (ret.code == 200) {
-                        $("#unstar").html('<i class="fa fa-star-o"></i>&nbsp;star')
-                        $("#unstar").attr("id", "star")
-                        } else {
-                            alert(ret.hint)
-                        }
-                })
-            })
-        })
-    </script>
+    <script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+    <script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -77,19 +55,30 @@
     <div>
         <div>
             <h4>评论列表</h4>
-            <div></div>
+            <div id="comment_list">
+                {% for comment in comments %}
+                    <div>
+                        [{{ comment.user }}]: 
+                        {{ comment.content|safe }}
+                        {{ comment.comment_time }}
+                    </div>
+                    <br>
+                {% endfor %}
+            </div>
         </div>
+        <hr>
 
         <div>
             <h4>新的评论</h4>
             {% if user.is_authenticated %}
                 <div>
-                    <form action="#" method="POST">
+                    <form id="comment_form" action="{% url 'create_comment' %}" method="POST">
                         {% csrf_token %}
-                        <textarea name="" id="" cols="30" rows="4" placeholder="说点什么"></textarea>
-                        <input type="hidden" name="object_id" value="{{ blog.id }}">
-                        <input type="hidden" name="content_type" value="blog">
-                        <input type="submit" value="提交">
+                        {% for fields in comment_form %}
+                            {{ fields }}
+                        {% endfor %}
+                        <span id="comment_error" class="text-danger pull-right"></span>
+                        <input type="submit" value="评论" class="btn btn-primary pull-left">
                     </form>
                 </div>
             {% else %}
@@ -105,4 +94,70 @@
         <hr />
         <a href="{% url 'blog-detail' blog.id %}">{{ blog.title }}</a>
     {% endfor %}
+{% endblock %}
+
+{% block script_extend %}
+    <script type="text/javascript">
+        $("#comment_form").submit(function(){
+
+            // 判断内容是否为空
+            $("#comment_error").text("");
+            if(CKEDITOR.instances['id_content'].document.getBody().getText().trim()==""){
+                $("#comment_error").text("评论内容不能为空");
+                return false;
+            }
+
+            // 更新数据到textarea
+            CKEDITOR.instances['id_content'].updateElement();
+
+            // 异步提交
+            $.ajax({
+                url: "{% url 'create_comment' %}",
+                type: "POST",
+                data: $(this).serialize(),
+                cache: false,
+                success: function(data){
+                    if(data["status"]=="SUCCESS"){
+                        var comment_html = '<div>[' + data["username"] +
+                                           ']: '+ data["content"] +
+                                           ' '+ data['comment_time'] +'</div>';
+                        $("#comment_list").prepend(comment_html);
+                        CKEDITOR.instances['id_content'].setData("");
+                    }else{
+                        $("#comment_error").text(data["message"]);
+                    }
+                },
+                error: function(xhr){
+                    console.log(xhr);
+                }
+            });
+            return false;
+        })
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $("#star").click(function() {
+                $.getJSON("{% url 'star' blog.id %}", function(ret) {
+                    if (ret.code == 200) {
+                    $("#star").html('<i class="fa fa-star"></i>&nbsp;Unstar')
+                    $("#star").attr("id", "unstar")
+                    } else {
+                        alert(ret.hint)
+                    }
+                    
+                })
+            }),
+            $("#unstar").click(function() {
+                $.getJSON("{% url 'unstar' blog.id %}", function(ret) {
+                    if (ret.code == 200) {
+                        $("#unstar").html('<i class="fa fa-star-o"></i>&nbsp;star')
+                        $("#unstar").attr("id", "star")
+                        } else {
+                            alert(ret.hint)
+                        }
+                })
+            })
+        }); 
+    </script>
 {% endblock %}

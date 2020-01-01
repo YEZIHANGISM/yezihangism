@@ -13,7 +13,10 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, Invali
 from django.http import Http404, JsonResponse
 from django.views.decorators.cache import cache_page
 from django.db import connection
-from comments.forms import CreateCommentModelForm
+from comments.forms import CreateCommentForm
+from django.contrib.contenttypes.models import ContentType
+from comments.models import Comment
+
 
 # Create your views here.
 
@@ -69,18 +72,6 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
 class BlogDetailView(generic.DetailView):
     model = Blog
 
-    # def post(self, request):
-    # 	pk = self.kwargs.get("pk")
-    # 	blog = Blog.objects.get(id=pk)
-    # 	form = CreateCommentModelForm(request.POST)
-    # 	if form.is_valid():
-    # 		form = form.save(commit=False)
-    # 		form.blog = blog.id
-    # 		form.user = self.request.user
-    # 		form.save()
-    # 		return HttpResponseRedirect(reverse('blog-detail', args=str(blog.id)))
-
-
     def get_context_data(self, **kwargs):
         context = super(BlogDetailView, self).get_context_data(**kwargs)
         queryset = Blog.objects.order_by("-pageviews")[:5]
@@ -93,17 +84,14 @@ class BlogDetailView(generic.DetailView):
         if self.has_next():
             context["next"] = Blog.objects.filter(id__gt=self.current_id).filter(topic__exact=self.current_topic).order_by("id").first()
 
-        # form = CreateCommentModelForm(self.request.POST)
-        # if form.is_valid():
-        #     form = form.save(commit=False)
-        #     form.blog = context["blog"].id
-        #     form.user = self.request.user
-        #     form.save()
-
-        #     return HttpResponseRedirect(reverse('blog-detail', args=str(context["blog"].id)))
-        # else:
-        #     form.add_error(None, "失败！！！")
-        # context["form"] = form
+        context["comments"] = Comment.objects.filter(object_id=self.current_id).order_by("-comment_time")
+        blog = get_object_or_404(Blog, pk=self.current_id)
+        blog_content_type = ContentType.objects.get_for_model(blog)
+        data = {}
+        data["content_type"] = blog_content_type.model
+        data["object_id"] = self.current_id
+        form = CreateCommentForm(initial=data)
+        context["comment_form"] = form
         context["blog_list"]= queryset
 
         return context
@@ -120,14 +108,6 @@ class BlogDetailView(generic.DetailView):
         model.auto_increment_views()
         return model
 
-    # def get_queryset(self):
-    # 	qs = super(BlogDetailView, self).get_queryset()
-    # 	pk = self.kwargs.get("pk")
-    # 	# model = Blog.objects.get(id=pk)
-    # 	model = Blog.objects.all()
-    # 	model = self.get_object(model)
-    # 	model.auto_increment_views()
-    # 	return model
 
 
 class BlogDelete(LoginRequiredMixin, DeleteView):

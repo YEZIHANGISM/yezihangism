@@ -180,11 +180,11 @@ CKEDITOR_CONFIGS = {
         ],
         'toolbar': 'Full',
         'height': 150,
-        'width': 700,
-        'filebrowserWindowWidth': 940,
-        'filebrowserWindowHeight': 725,
+        # 'width': 700,
+        # 'filebrowserWindowWidth': 940,
+        # 'filebrowserWindowHeight': 725,
         # 添加的插件
-        'extraPlugins': 'codesnippet',
+        'extraPlugins': ",".join(['codesnippet', 'prism', "widget", 'lineutils']),
     }
 }
 

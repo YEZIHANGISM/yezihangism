@@ -157,3 +157,7 @@ footer li{
     padding-top: 0;
     color: whitesmoke;
 }
+
+div.django-ckeditor-widget {
+    width: 100%;
+}

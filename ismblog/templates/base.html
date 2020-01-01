@@ -56,7 +56,7 @@
                 <ul class="ismblog-ul-right">
                     {% if user.is_authenticated %}
                         <li><a href="{% url 'blog-create' %}"><button>写博客</button></a></li>
-                        <li><a href="{% url 'user-detail' user.id %}"><button>{{ user.get_username }}</button></a></li>
+                        <!-- <li><a href="{% url 'user-detail' user.id %}"><button>{{ user.get_username }}</button></a></li> -->
                         <li><a href="{% url 'logout' %}?next=/"><button>注销</button></a></li>
                     {% else %}
                         <li><a href="{% url 'leavemsg' %}"><button>给我留言</button></a></li>
@@ -83,6 +83,8 @@
           </div>
         </div>
     </div>
+
+    {% block script_extend %}{% endblock %}
 
     <footer id="ismblog_footer">
         <div class="container" id="ismblog_footer_div">
