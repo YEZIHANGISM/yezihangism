@@ -3,7 +3,7 @@ from ismblog import views
 from django.views.decorators.cache import cache_page
 
 urlpatterns = [
-    path("", cache_page(60)(views.HomeListView.as_view()), name="home"),
+    path("", cache_page(60 * 15)(views.HomeListView.as_view()), name="home"),
     # path("", views.HomeListView.as_view(), name="home"),
 	path('blogs/', views.BlogListView.as_view(), name='blogs'),
     # path("management/", views.index, name="index"),
@@ -12,7 +12,7 @@ urlpatterns = [
     path("user/<int:pk>", views.UserDetailView.as_view(), name="user-detail"),
     path("user/<int:pk>/update", views.UserUpdate.as_view(), name="user-update"),
 
-    path("blog/<int:pk>", views.BlogDetailView.as_view(), name="blog-detail"),
+    path("blog/<int:pk>", cache_page(60 * 60)(views.BlogDetailView.as_view()), name="blog-detail"),
     path("blog/<int:pk>/delete", views.BlogDelete.as_view(), name="blog-delete"),
     path("blog/<int:pk>/update", views.BlogUpdate.as_view(), name="blog-update"),
 

@@ -11,11 +11,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, InvalidPage
 from django.http import Http404, JsonResponse
-from django.views.decorators.cache import cache_page
 from django.db import connection
 from comments.forms import CreateCommentForm
 from django.contrib.contenttypes.models import ContentType
 from comments.models import Comment
+from django.db.models import F, Q
 
 
 # Create your views here.
@@ -96,6 +96,11 @@ class BlogDetailView(generic.DetailView):
 
         return context
 
+    def get_queryset(self):
+        blog = super(BlogDetailView, self).get_queryset()
+        blog.update(pageviews=F("pageviews")+1)
+        return blog
+
 
     def has_next(self):
         return self.current_id < self.last_id
@@ -103,10 +108,11 @@ class BlogDetailView(generic.DetailView):
     def has_previous(self):
         return self.current_id > 1
 
-    def get_object(self):
-        model = super(BlogDetailView, self).get_object()
-        model.auto_increment_views()
-        return model
+    # def get_object(self):
+    #     model = super(BlogDetailView, self).get_object()
+    #     # model.update(pageviews=F("pageviews")+1)
+    #     # model.auto_increment_views()
+    #     return model
 
 
 
