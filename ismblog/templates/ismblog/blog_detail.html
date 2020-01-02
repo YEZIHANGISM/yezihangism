@@ -120,7 +120,7 @@
                     if(data["status"]=="SUCCESS"){
                         var comment_html = '<div>[' + data["username"] +
                                            ']: '+ data["content"] +
-                                           ' '+ data['comment_time'] +'</div>';
+                                           ' '+ data['comment_time'] +'</div><br>';
                         $("#comment_list").prepend(comment_html);
                         CKEDITOR.instances['id_content'].setData("");
                     }else{
