@@ -19,7 +19,7 @@ def create_comment(request):
         comment.content = comment_form.cleaned_data["content"]
         comment.content_object = comment_form.cleaned_data["content_object"]
         comment.save()
-        
+
         data = {}
         data["status"] = "SUCCESS"
         data["username"] = comment.user.username
@@ -32,3 +32,7 @@ def create_comment(request):
         data["message"] = list(comment_form.errors.values())[0][0]
 
     return JsonResponse(data)
+
+def send_notification(request):
+    context = {}
+    return render(request, "comments/send_notification.html", context)

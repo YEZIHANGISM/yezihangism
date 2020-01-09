@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'debug_toolbar',
     'comments',
+    'notifications',
 ]
 
 MIDDLEWARE = [

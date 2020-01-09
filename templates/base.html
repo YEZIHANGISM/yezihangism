@@ -55,7 +55,8 @@
                 </ul>
                 <ul class="ismblog-ul-right">
                     {% if user.is_authenticated %}
-                        <li><a href="{% url 'blog-create' %}"><button>写博客</button></a></li>
+                        <li><a href="{% url 'my-notifications' %}"><button>消息中心</button></a></li>
+                        <!-- <li><a href="{% url 'blog-create' %}"><button>写博客</button></a></li> -->
                         <!-- <li><a href="{% url 'user-detail' user.id %}"><button>{{ user.get_username }}</button></a></li> -->
                         <li><a href="{% url 'logout' %}?next=/"><button>注销</button></a></li>
                     {% else %}

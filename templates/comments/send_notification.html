@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>消息中心</title>
+{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for notification in request.user.notifications.all %}
+            <li>[{{ notification.timesince }}] - {{ notification.verb }}</li>
+        {% empty %}
+            <li>暂无消息</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

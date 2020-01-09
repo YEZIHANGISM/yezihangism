@@ -29,6 +29,7 @@ urlpatterns = [
     path("accounts/", include('django.contrib.auth.urls')),
     path("ckeditor/", include('ckeditor_uploader.urls')),
     path("comments/", include("comments.urls")),
+    path("notifications/", include("notifications.urls", namespace='notifications'))
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
